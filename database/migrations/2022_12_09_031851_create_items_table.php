@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('stock', false);
             $table->text('description');
             $table->string('status');
+            $table->foreignId('category_id')->constrained('categories', 'id');
             $table->timestamps();
         });
     }
