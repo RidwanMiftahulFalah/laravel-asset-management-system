@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('status');
             $table->foreignId('category_id')->constrained('categories', 'id');
+            $table->foreignId('work_unit_id')->constrained('work_units', 'id');
             $table->timestamps();
         });
     }

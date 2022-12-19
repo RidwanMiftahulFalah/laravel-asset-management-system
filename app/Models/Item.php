@@ -14,6 +14,10 @@ class Item extends Model {
     return $this->belongsTo(Category::class);
   }
 
+  public function workUnit() {
+    return $this->belongsTo(WorkUnit::class);
+  }
+
   public function transactions() {
     return $this->hasMany(Transaction::class);
   }

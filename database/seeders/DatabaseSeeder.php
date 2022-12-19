@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Item;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\WorkUnit;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -36,12 +37,17 @@ class DatabaseSeeder extends Seeder {
       'name' => 'Elektronik'
     ]);
 
+    WorkUnit::create([
+      'name' => 'Rekayasa Perangkat Lunak'
+    ]);
+
     Item::create([
       'name' => 'Projector',
       'stock' => 12,
       'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, cupiditate doloremque. Dolore consequatur rem modi deserunt sint quas eos consectetur.',
       'status' => 'Layak Pakai',
-      'category_id' => 1
+      'category_id' => 1,
+      'work_unit_id' => 1
     ]);
 
     Transaction::create([
