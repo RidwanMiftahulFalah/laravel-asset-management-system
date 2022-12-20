@@ -10,6 +10,8 @@ class Item extends Model {
 
   protected $guarded = ['id'];
 
+  protected $with = ['category', 'workUnit'];
+
   public function category() {
     return $this->belongsTo(Category::class);
   }
