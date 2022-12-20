@@ -1,3 +1,4 @@
 <h1>Dashboard Page</h1>
 
-<a href="/categories">Category</a>
+<a href="{{ route('categories.index') }}">Kategori</a>
+<a href="{{ route('work_units.index') }}">Unit Kerja</a>

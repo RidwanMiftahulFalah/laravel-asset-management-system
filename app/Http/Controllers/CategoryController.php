@@ -39,7 +39,7 @@ class CategoryController extends Controller {
     ]);
 
     Category::create($request->all());
-    return redirect()->route('categories.index')->with('message', 'Kategori berhasil ditambahkan.');
+    return redirect()->route('categories.index')->with('message', 'Kategori baru berhasil ditambahkan.');
   }
 
   /**
