@@ -1,3 +1,3 @@
 <h1>Dashboard Page</h1>
 
-<a href="/category">Category</a>
+<a href="/categories">Category</a>

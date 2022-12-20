@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Http\Controllers;
@@ -14,7 +13,9 @@ class CategoryController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function index() {
-    //
+    return view('categories.index', [
+      'categories' => Category::all()
+    ]);
   }
 
   /**
@@ -23,7 +24,7 @@ class CategoryController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function create() {
-    //
+    return view('categories.create');
   }
 
   /**
@@ -33,7 +34,12 @@ class CategoryController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(StoreCategoryRequest $request) {
-    //
+    $request->validate([
+      'name' => 'required'
+    ]);
+
+    Category::create($request->all());
+    return redirect()->route('categories.index')->with('message', 'Kategori berhasil ditambahkan.');
   }
 
   /**
@@ -53,7 +59,7 @@ class CategoryController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function edit(Category $category) {
-    //
+    return view('categories.edit', compact('category'));
   }
 
   /**
@@ -64,7 +70,12 @@ class CategoryController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function update(UpdateCategoryRequest $request, Category $category) {
-    //
+    $request->validate([
+      'name' => 'required'
+    ]);
+
+    $category->update($request->all());
+    return redirect()->route('categories.index')->with('message', 'Data Kategori Berhasil Diubah');
   }
 
   /**
@@ -74,6 +85,7 @@ class CategoryController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy(Category $category) {
-    //
+    $category->delete();
+    return redirect()->route('categories.index')->with('message', 'Kategori berhasil dihapus.');
   }
 }

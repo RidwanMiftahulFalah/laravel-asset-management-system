@@ -22,4 +22,8 @@ Route::get('/dashboard', function () {
   return view('index');
 });
 
+Route::get('/categories', [CategoryController::class, 'index']);
+
+Route::get('/categories/create', [CategoryController::class, 'create']);
+
 Route::resource('categories', CategoryController::class);
