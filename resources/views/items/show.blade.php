@@ -18,6 +18,13 @@
     </tr>
 
     <tr>
+      <td><label for="disposable">Sifat Aset : </label></td>
+      <td>
+        <p id="disposable">{{ $item->disposable ? 'Habis Pakai' : 'Tidak Habis Pakai' }}</p>
+      </td>
+    </tr>
+
+    <tr>
       <td><label for="stock">Stok : </label></td>
       <td>
         <p id="stock">{{ $item->stock }}</p>

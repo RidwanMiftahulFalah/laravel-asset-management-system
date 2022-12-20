@@ -23,10 +23,10 @@
       <tr>
         <td><label>Habis Pakai</label></td>
         <td>
-          <input type="radio" name="disposable" id="ya" value="1">
+          <input type="radio" name="disposable" class="disposable" id="ya" value="1">
           <label for="ya">Ya</label>
 
-          <input type="radio" name="disposable" id="tidak" value="0">
+          <input type="radio" name="disposable" class="disposable" id="tidak" value="0">
           <label for="tidak">Tidak</label>
         </td>
       </tr>
@@ -83,6 +83,7 @@
     </table>
   </form>
 
+  <script src="{{ asset('js/items/validation.js') }}"></script>
 </body>
 
 </html>
