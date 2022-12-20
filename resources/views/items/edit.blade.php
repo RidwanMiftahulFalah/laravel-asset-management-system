@@ -15,10 +15,23 @@
     @csrf
     @method('PUT')
 
+    {{-- @dd($item->reusable == true) --}}
+
     <table>
       <tr>
         <td><label for="name">Nama Aset : </label></td>
         <td><input type="text" name="name" id="name" value="{{ $item->name }}"></td>
+      </tr>
+
+      <tr>
+        <td><label>Habis Pakai</label></td>
+        <td>
+          <input type="radio" name="disposable" id="ya" value="1" {{ $item->disposable ? 'checked' : '' }}>
+          <label for="ya">Ya</label>
+
+          <input type="radio" name="disposable" id="tidak" value="0" {{ !$item->disposable ? 'checked' : '' }}>
+          <label for="tidak">Tidak</label>
+        </td>
       </tr>
 
       <tr>

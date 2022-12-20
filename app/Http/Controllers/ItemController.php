@@ -39,6 +39,7 @@ class ItemController extends Controller {
   public function store(StoreItemRequest $request) {
     $request->validate([
       'name' => 'required',
+      'disposable' => 'required',
       'stock' => 'required',
       'description' => 'required',
       'status' => 'required',
@@ -83,6 +84,7 @@ class ItemController extends Controller {
   public function update(UpdateItemRequest $request, Item $item) {
     $request->validate([
       'name' => 'required',
+      'disposable' => 'required',
       'stock' => 'required',
       'description' => 'required',
       'status' => 'required',

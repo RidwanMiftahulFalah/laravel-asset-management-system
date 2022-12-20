@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder {
 
     Item::create([
       'name' => 'Projector',
+      'disposable' => 0,
       'stock' => 12,
       'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, cupiditate doloremque. Dolore consequatur rem modi deserunt sint quas eos consectetur.',
       'status' => 'Layak Pakai',

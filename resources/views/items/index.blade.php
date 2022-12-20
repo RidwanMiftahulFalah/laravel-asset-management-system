@@ -39,6 +39,7 @@
     <tr>
       <th>ID</th>
       <th>Nama Aset</th>
+      <th>Sifat Aset</th>
       <th>Stok</th>
       <th>Status</th>
       <th>Kategori</th>
@@ -50,6 +51,7 @@
       <tr>
         <td>{{ $item->id }}</td>
         <td>{{ $item->name }}</td>
+        <td>{{ $item->disposable ? 'Habis Pakai' : 'Tidak Habis Pakai' }}</td>
         <td>{{ $item->stock }}</td>
         <td>{{ $item->status }}</td>
         <td>{{ $item->category->name }}</td>
@@ -60,9 +62,9 @@
           <form action="{{ route('items.destroy', $item->id) }}" method="post">
             @csrf
             @method('DELETE')
-            
+
             <button type="submit">Hapus</button>
-          </form>                  
+          </form>
         </td>
       </tr>
     @endforeach

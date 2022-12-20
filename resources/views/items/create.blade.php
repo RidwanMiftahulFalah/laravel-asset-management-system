@@ -21,6 +21,17 @@
       </tr>
 
       <tr>
+        <td><label>Habis Pakai</label></td>
+        <td>
+          <input type="radio" name="disposable" id="ya" value="1">
+          <label for="ya">Ya</label>
+
+          <input type="radio" name="disposable" id="tidak" value="0">
+          <label for="tidak">Tidak</label>
+        </td>
+      </tr>
+
+      <tr>
         <td><label for="stock">Stok : </label></td>
         <td><input type="number" name="stock" id="stock"></td>
       </tr>

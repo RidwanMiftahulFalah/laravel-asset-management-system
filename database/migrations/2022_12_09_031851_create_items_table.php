@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('disposable');
             $table->integer('stock', false);
             $table->text('description');
             $table->string('status');
