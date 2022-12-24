@@ -41,9 +41,11 @@
       <th>Nama Aset</th>
       <th>Sifat Aset</th>
       <th>Stok</th>
-      <th>Status</th>
+      <th>Kondisi</th>
       <th>Kategori</th>
       <th>Unit Kerja</th>
+      <th>Hak Pakai</th>
+      <th>Status</th>
       <th>Operasi</th>
     </tr>
 
@@ -51,11 +53,13 @@
       <tr>
         <td>{{ $item->id }}</td>
         <td>{{ $item->name }}</td>
-        <td>{{ $item->disposable ? 'Habis Pakai' : 'Tidak Habis Pakai' }}</td>
+        <td>{{ $item->is_disposable ? 'Habis Pakai' : 'Tidak Habis Pakai' }}</td>
         <td>{{ $item->stock }}</td>
-        <td>{{ $item->status }}</td>
+        <td>{{ $item->condition }}</td>
         <td>{{ $item->category->name }}</td>
         <td>{{ $item->workUnit->name }}</td>
+        <td>{{ $item->usage_permission }}</td>
+        <td>{{ $item->is_active ? 'Aktif' : 'Nonaktif' }}</td>
         <td>
           <a href="{{ route('items.show', $item->id) }}">Tampilkan</a>
           <a href="{{ route('items.edit', $item->id) }}">Ubah</a>
@@ -63,7 +67,7 @@
             @csrf
             @method('DELETE')
 
-            <button type="submit">Hapus</button>
+            <button type="submit">{{ $item->is_active ? 'Nonaktifkan' : 'Aktifkan' }}</button>
           </form>
         </td>
       </tr>

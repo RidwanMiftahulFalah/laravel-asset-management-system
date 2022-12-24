@@ -18,9 +18,9 @@
     </tr>
 
     <tr>
-      <td><label for="disposable">Sifat Aset : </label></td>
+      <td><label for="is_disposable">Sifat Aset : </label></td>
       <td>
-        <p id="disposable">{{ $item->disposable ? 'Habis Pakai' : 'Tidak Habis Pakai' }}</p>
+        <p id="is_disposable">{{ $item->is_disposable ? 'Habis Pakai' : 'Tidak Habis Pakai' }}</p>
       </td>
     </tr>
 
@@ -39,9 +39,23 @@
     </tr>
 
     <tr>
-      <td><label>Status : </label></td>
+      <td><label for="usage-permission">Hak Pakai : </label></td>
       <td>
-        <p>{{ $item->status }}</p>
+        <p id="usage-permission">{{ $item->usage_permission }}</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td><label for="condition"></label></td>
+      <td>
+        <p id="condition">{{ $item->condition }}</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td><label for="is_active">Status : </label></td>
+      <td>
+        <p id="is_active">{{ $item->is_active }}</p>
       </td>
     </tr>
 

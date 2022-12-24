@@ -26,12 +26,12 @@
       <tr>
         <td><label>Habis Pakai</label></td>
         <td>
-          <input type="radio" name="disposable" class="disposable" id="ya" value="1"
-            {{ $item->disposable ? 'checked' : '' }}>
+          <input type="radio" name="is_disposable" class="disposable" id="ya" value="1"
+            {{ $item->is_disposable ? 'checked' : '' }}>
           <label for="ya">Ya</label>
 
-          <input type="radio" name="disposable" class="disposable" id="tidak" value="0"
-            {{ !$item->disposable ? 'checked' : '' }}>
+          <input type="radio" name="is_disposable" class="disposable" id="tidak" value="0"
+            {{ !$item->is_disposable ? 'checked' : '' }}>
           <label for="tidak">Tidak</label>
         </td>
       </tr>
@@ -49,15 +49,36 @@
       </tr>
 
       <tr>
-        <td><label>Status : </label></td>
+        <td><label for="hak-pakai">Hak Pakai : </label></td>
         <td>
-          <input type="radio" name="status" id="layak-pakai" value="Layak Pakai"
-            {{ $item->status === 'Layak Pakai' ? 'checked' : '' }}>
+          <input type="radio" name="usage_permission" id="guru" value="Guru"
+            {{ $item->usage_permission === 'Guru' ? 'checked' : '' }}>
+          <label for="guru">Guru</label>
+
+          <input type="radio" name="usage_permission" id="siswa" value="Siswa"
+            {{ $item->usage_permission === 'Siswa' ? 'checked' : '' }}>
+          <label for="siswa">Siswa</label>
+
+          <input type="radio" name="usage_permission" id="guru-siswa" value="Guru & Siswa"
+            {{ $item->usage_permission === 'Guru & Siswa' ? 'checked' : '' }}>
+          <label for="guru-siswa">Guru & Siswa</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label>Condition : </label></td>
+        <td>
+          <input type="radio" name="condition" id="layak-pakai" value="Layak Pakai"
+            {{ $item->condition === 'Layak Pakai' ? 'checked' : '' }}>
           <label for="layak-pakai">Layak Pakai</label>
 
-          <input type="radio" name="status" id="tidak-layak-pakai" value="Tidak Layak Pakai"
-            {{ $item->status === 'Tidak Layak Pakai' ? 'checked' : '' }}>
-          <label for="tidak-layak-pakai">Tidak Layak Pakai</label>
+          <input type="radio" name="condition" id="rusak" value="Rusak"
+            {{ $item->condition === 'Rusak' ? 'checked' : '' }}>
+          <label for="rusak">Tidak Layak Pakai</label>
+
+          <input type="radio" name="condition" id="hilang" value="Hilang"
+            {{ $item->condition === 'Hilang' ? 'checked' : '' }}>
+          <label for="hilang">Tidak Layak Pakai</label>
         </td>
       </tr>
 

@@ -44,15 +44,34 @@
       </tr>
 
       <tr>
-        <td><label>Status : </label></td>
+        <td><label for="hak-pakai">Hak Pakai : </label></td>
         <td>
-          <input type="radio" name="status" id="layak-pakai" value="Layak Pakai">
-          <label for="layak-pakai">Layak Pakai</label>
+          <input type="radio" name="usage_permission" id="guru" value="Guru">
+          <label for="guru">Guru</label>
 
-          <input type="radio" name="status" id="tidak-layak-pakai" value="Tidak Layak Pakai">
-          <label for="tidak-layak-pakai">Tidak Layak Pakai</label>
+          <input type="radio" name="usage_permission" id="siswa" value="Siswa">
+          <label for="siswa">Siswa</label>
+
+          <input type="radio" name="usage_permission" id="guru-siswa" value="Guru & Siswa">
+          <label for="guru-siswa">Guru & Siswa</label>
         </td>
       </tr>
+
+      <tr>
+        <td><label>Kondisi : </label></td>
+        <td>
+          <input type="radio" name="condition" id="layak-pakai" value="Layak Pakai">
+          <label for="layak-pakai">Layak Pakai</label>
+
+          <input type="radio" name="condition" id="rusak" value="Rusak">
+          <label for="rusak">Rusak</label>
+
+          <input type="radio" name="condition" id="hilang" value="Hilang">
+          <label for="hilang">Hilang</label>
+        </td>
+      </tr>
+
+      <input type="hidden" name="is_active" value="1">
 
       <tr>
         <td><label for="category">Kategori</label></td>

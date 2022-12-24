@@ -39,10 +39,10 @@ class ItemController extends Controller {
   public function store(StoreItemRequest $request) {
     $request->validate([
       'name' => 'required',
-      'disposable' => 'required',
+      'is_disposable' => 'required',
       'stock' => 'required',
       'description' => 'required',
-      'status' => 'required',
+      'condition' => 'required',
       'category_id' => 'required',
       'work_unit_id' => 'required'
     ]);
@@ -84,10 +84,10 @@ class ItemController extends Controller {
   public function update(UpdateItemRequest $request, Item $item) {
     $request->validate([
       'name' => 'required',
-      'disposable' => 'required',
+      'is_disposable' => 'required',
       'stock' => 'required',
       'description' => 'required',
-      'status' => 'required',
+      'condition' => 'required',
       'category_id' => 'required',
       'work_unit_id' => 'required'
     ]);
@@ -104,7 +104,9 @@ class ItemController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy(Item $item) {
-    $item->delete();
-    return redirect()->route('items.index')->with('message', 'Data Aset yang dipilih berhasil dihapus');
+    // For toggling item status, if the item status is active it will be updated to nonactive, vice-versa
+    $item->update($item->is_active ? ['is_active' => 0] : ['is_active' => 1]);
+
+    return redirect()->route('items.index')->with('message', 'Data Aset yang dipilih berhasil dinonaktifkan');
   }
 }

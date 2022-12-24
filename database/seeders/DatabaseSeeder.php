@@ -43,10 +43,12 @@ class DatabaseSeeder extends Seeder {
 
     Item::create([
       'name' => 'Projector',
-      'disposable' => 0,
+      'is_disposable' => 0,
       'stock' => 12,
       'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, cupiditate doloremque. Dolore consequatur rem modi deserunt sint quas eos consectetur.',
-      'status' => 'Layak Pakai',
+      'condition' => 'Layak Pakai',
+      'usage_permission' => 'Siswa',
+      'is_active' => 1,
       'category_id' => 1,
       'work_unit_id' => 1
     ]);
