@@ -39,6 +39,7 @@
     <tr>
       <th>ID</th>
       <th>Nama Unit Kerja</th>
+      <th>Status</th>
       <th>Operasi</th>
     </tr>
 
@@ -46,13 +47,14 @@
       <tr>
         <td>{{ $workUnit->id }}</td>
         <td>{{ $workUnit->name }}</td>
+        <td>{{ $workUnit->is_active ? 'Aktif' : 'Nonaktif' }}</td>
         <td>
           <a href="{{ route('work_units.edit', $workUnit->id) }}">Ubah</a>
           <form action="{{ route('work_units.destroy', $workUnit->id) }}" method="post">
             @csrf
             @method('DELETE')
 
-            <button type="submit">Hapus</button>
+            <button type="submit">{{ $workUnit->is_active ? 'Nonaktifkan' : 'Aktifkan' }}</button>
           </form>
         </td>
       </tr>

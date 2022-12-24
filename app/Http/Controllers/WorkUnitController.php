@@ -38,7 +38,7 @@ class WorkUnitController extends Controller {
     ]);
 
     WorkUnit::create($request->all());
-    return redirect()->route('work_units.index')->with('message', 'Data Unit Kerja baru berhasil ditambahkan');
+    return redirect()->route('work_units.index')->with('message', 'Data Unit Kerja baru berhasil ditambahkan.');
   }
 
   /**
@@ -74,7 +74,7 @@ class WorkUnitController extends Controller {
     ]);
 
     $workUnit->update($request->all());
-    return redirect()->route('work_units.index')->with('message', 'Data Unit Kerja yang dipilih berhasil diubah');
+    return redirect()->route('work_units.index')->with('message', 'Data Unit Kerja yang dipilih berhasil diubah.');
   }
 
   /**
@@ -84,7 +84,9 @@ class WorkUnitController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy(WorkUnit $workUnit) {
-    $workUnit->delete();
-    return redirect()->route('work_units.index')->with('message', 'Data Unit Kerja yang dipilih berhasil dihapus');
+    $message = 'Data Unit Kerja yang dipilih berhasil ' . ($workUnit->is_active ? 'dinonaktifkan.' : 'diaktifkan.');
+
+    $workUnit->update($workUnit->is_active ? ['is_active' => 0] : ['is_active' => 1]);
+    return redirect()->route('work_units.index')->with('message', $message);
   }
 }
