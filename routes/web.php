@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\WorkUnitController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +28,4 @@ Route::get('/dashboard', function () {
 Route::resource('categories', CategoryController::class);
 Route::resource('work_units', WorkUnitController::class);
 Route::resource('items', ItemController::class);
+Route::resource('rooms', RoomController::class);

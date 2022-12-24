@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Item;
+use App\Models\Room;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\WorkUnit;
@@ -37,8 +38,16 @@ class DatabaseSeeder extends Seeder {
       'name' => 'Elektronik'
     ]);
 
+    Category::create([
+      'name' => 'Alat Tulis Kantor'
+    ]);
+
     WorkUnit::create([
       'name' => 'Rekayasa Perangkat Lunak'
+    ]);
+
+    WorkUnit::create([
+      'name' => 'Teknik Komputer Jaringan'
     ]);
 
     Item::create([
@@ -53,14 +62,24 @@ class DatabaseSeeder extends Seeder {
       'work_unit_id' => 1
     ]);
 
+    Room::create([
+      'name' => '12-A',
+      'is_active' => 1
+    ]);
+
+    Room::create([
+      'name' => '11-B',
+      'is_active' => 1
+    ]);
+
     Transaction::create([
       'recipient_name' => 'Maman Sutisna',
-      'recipient_classroom' => '9L',
       'quantity' => 2,
       'checkout_date' => Carbon::now(),
       'status' => 'Pending',
       'user_id' => 1,
-      'item_id' => 1
+      'item_id' => 1,
+      'item_placement' => 1
     ]);
   }
 }

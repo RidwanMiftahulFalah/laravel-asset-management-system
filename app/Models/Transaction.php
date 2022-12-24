@@ -12,11 +12,17 @@ class Transaction extends Model {
 
   protected $guarded = ['id'];
 
+  protected $with = ['user', 'item', 'room'];
+
   public function user() {
     return $this->belongsTo(User::class);
   }
 
   public function item() {
     return $this->belongsTo(Item::class);
+  }
+
+  public function room() {
+    return $this->belongsTo(Room::class);
   }
 }
