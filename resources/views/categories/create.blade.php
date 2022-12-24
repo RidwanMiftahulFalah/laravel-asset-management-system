@@ -13,6 +13,8 @@
     @csrf
     <input type="text" name="name" id="name">
 
+    <input type="hidden" name="is_active" value="1">
+
     <button type="submit">Simpan</button>
   </form>
 </body>

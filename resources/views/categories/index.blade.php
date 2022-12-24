@@ -40,18 +40,21 @@
     <tr>
       <th>ID</th>
       <th>Nama</th>
+      <th>Status</th>
       <th>Aksi</th>
     </tr>
     @foreach ($categories as $category)
       <tr>
         <td>{{ $category->id }}</td>
         <td>{{ $category->name }}</td>
+        <td>{{ $category->is_active ? 'Aktif' : 'Nonaktif' }}</td>
         <td>
           <a href="{{ route('categories.edit', $category->id) }}">Ubah</a>
           <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit">Hapus</button>
+
+            <button type="submit">{{ $category->is_active ? 'Nonaktifkan' : 'Aktifkan' }}</button>
           </form>
         </td>
       </tr>

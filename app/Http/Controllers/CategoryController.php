@@ -39,7 +39,7 @@ class CategoryController extends Controller {
     ]);
 
     Category::create($request->all());
-    return redirect()->route('categories.index')->with('message', 'Kategori baru berhasil ditambahkan.');
+    return redirect()->route('categories.index')->with('message', 'Data Kategori baru berhasil ditambahkan.');
   }
 
   /**
@@ -75,7 +75,7 @@ class CategoryController extends Controller {
     ]);
 
     $category->update($request->all());
-    return redirect()->route('categories.index')->with('message', 'Data Kategori Berhasil Diubah');
+    return redirect()->route('categories.index')->with('message', 'Data Kategori yang dipilih berhasil diubah.');
   }
 
   /**
@@ -85,7 +85,9 @@ class CategoryController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy(Category $category) {
-    $category->delete();
-    return redirect()->route('categories.index')->with('message', 'Kategori berhasil dihapus.');
+    $message = 'Data Kategori yang dipilih berhasil ' . ($category->is_active ? 'dinonaktifkan.' : 'diaktifkan.');
+
+    $category->update($category->is_active ? ['is_active' => 0] : ['is_active' => 1]);
+    return redirect()->route('categories.index')->with('message', $message);
   }
 }

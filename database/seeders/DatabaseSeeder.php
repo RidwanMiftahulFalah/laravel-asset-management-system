@@ -35,19 +35,23 @@ class DatabaseSeeder extends Seeder {
     ]);
 
     Category::create([
-      'name' => 'Elektronik'
+      'name' => 'Elektronik',
+      'is_active' => 1
     ]);
 
     Category::create([
-      'name' => 'Alat Tulis Kantor'
+      'name' => 'Alat Tulis Kantor',
+      'is_active' => 1
     ]);
 
     WorkUnit::create([
-      'name' => 'Rekayasa Perangkat Lunak'
+      'name' => 'Rekayasa Perangkat Lunak',
+      'is_active' => 1
     ]);
 
     WorkUnit::create([
-      'name' => 'Teknik Komputer Jaringan'
+      'name' => 'Teknik Komputer Jaringan',
+      'is_active' => 1
     ]);
 
     Item::create([
