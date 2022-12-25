@@ -74,11 +74,11 @@
 
           <input type="radio" name="condition" id="rusak" value="Rusak"
             {{ $item->condition === 'Rusak' ? 'checked' : '' }}>
-          <label for="rusak">Tidak Layak Pakai</label>
+          <label for="rusak">Rusak</label>
 
           <input type="radio" name="condition" id="hilang" value="Hilang"
             {{ $item->condition === 'Hilang' ? 'checked' : '' }}>
-          <label for="hilang">Tidak Layak Pakai</label>
+          <label for="hilang">Hilang</label>
         </td>
       </tr>
 
