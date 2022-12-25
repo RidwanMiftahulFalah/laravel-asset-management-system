@@ -19,7 +19,7 @@ return new class extends Migration {
       $table->string('status', 15);
       $table->foreignId('user_id')->constrained('users', 'id');
       $table->foreignId('item_id')->constrained('items', 'id');
-      $table->foreignId('item_placement')->constrained('rooms', 'id');
+      $table->foreignId('room_id')->constrained('rooms', 'id');
     });
   }
 
