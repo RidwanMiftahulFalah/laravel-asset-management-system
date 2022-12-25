@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder {
       'stock' => 1,
       'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, cupiditate doloremque. Dolore consequatur rem modi deserunt sint quas eos consectetur.',
       'condition' => 'Layak Pakai',
-      'usage_permission' => 'Siswa',
+      'usage_permission' => 'Guru',
       'is_active' => 0,
       'category_id' => 1,
       'work_unit_id' => 1
@@ -96,7 +96,7 @@ class DatabaseSeeder extends Seeder {
       'stock' => 1,
       'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, cupiditate doloremque. Dolore consequatur rem modi deserunt sint quas eos consectetur.',
       'condition' => 'Layak Pakai',
-      'usage_permission' => 'Siswa',
+      'usage_permission' => 'Guru & Siswa',
       'is_active' => 1,
       'category_id' => 1,
       'work_unit_id' => 1
