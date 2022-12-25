@@ -42,13 +42,12 @@ class ItemController extends Controller {
       'is_disposable' => 'required',
       'stock' => 'required',
       'description' => 'required',
-      'condition' => 'required',
       'category_id' => 'required',
       'work_unit_id' => 'required'
     ]);
 
     Item::create($request->all());
-    return redirect()->route('items.index')->with('message', 'Data Aset baru berhasil ditambahkan');
+    return redirect()->route('items.index')->with('message', 'Data Aset baru berhasil ditambahkan.');
   }
 
   /**
@@ -87,14 +86,13 @@ class ItemController extends Controller {
       'is_disposable' => 'required',
       'stock' => 'required',
       'description' => 'required',
-      'condition' => 'required',
       'category_id' => 'required',
       'work_unit_id' => 'required'
     ]);
 
     $item->update($request->all());
 
-    return redirect()->route('items.index')->with('message', 'Data Aset yang dipilih berhasil diubah');
+    return redirect()->route('items.index')->with('message', 'Data Aset yang dipilih berhasil diubah.');
   }
 
   /**
@@ -104,9 +102,10 @@ class ItemController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy(Item $item) {
+    $message = 'Data Aset yang dipilih berhasil ' . ($item->is_active ? 'dinonaktifkan.' : 'diaktifkan.');
+
     // For toggling item status, if the item status is active it will be updated to nonactive, vice-versa
     $item->update($item->is_active ? ['is_active' => 0] : ['is_active' => 1]);
-
-    return redirect()->route('items.index')->with('message', 'Data Aset yang dipilih berhasil dinonaktifkan');
+    return redirect()->route('items.index')->with('message', $message);
   }
 }

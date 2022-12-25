@@ -65,7 +65,7 @@
         </td>
       </tr>
 
-      <tr>
+      <tr id="condition-option">
         <td><label>Kondisi : </label></td>
         <td>
           <input type="radio" name="condition" id="layak-pakai" value="Layak Pakai"

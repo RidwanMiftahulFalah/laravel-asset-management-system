@@ -23,10 +23,10 @@
       <tr>
         <td><label>Habis Pakai</label></td>
         <td>
-          <input type="radio" name="disposable" class="disposable" id="ya" value="1">
+          <input type="radio" name="is_disposable" class="disposable" id="ya" value="1">
           <label for="ya">Ya</label>
 
-          <input type="radio" name="disposable" class="disposable" id="tidak" value="0">
+          <input type="radio" name="is_disposable" class="disposable" id="tidak" value="0">
           <label for="tidak">Tidak</label>
         </td>
       </tr>
@@ -57,7 +57,7 @@
         </td>
       </tr>
 
-      <tr>
+      <tr id="condition-option">
         <td><label>Kondisi : </label></td>
         <td>
           <input type="radio" name="condition" id="layak-pakai" value="Layak Pakai">

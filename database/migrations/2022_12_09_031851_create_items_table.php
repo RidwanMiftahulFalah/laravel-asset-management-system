@@ -17,7 +17,7 @@ return new class extends Migration {
       $table->boolean('is_disposable');
       $table->integer('stock', false);
       $table->text('description');
-      $table->string('condition');
+      $table->string('condition')->default('Layak Pakai');
       $table->string('usage_permission');
       $table->boolean('is_active');
       $table->foreignId('category_id')->constrained('categories', 'id');
