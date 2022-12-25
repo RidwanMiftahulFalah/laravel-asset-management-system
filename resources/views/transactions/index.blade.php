@@ -28,6 +28,8 @@
 <body>
   <h1>Halaman Transaksi</h1>
 
+  {{-- @dd(session('message')) --}}
+
   @if (session('message'))
     <div class="message">
       {{ session('message') }}
@@ -54,7 +56,7 @@
         <td>{{ $item->category->name }}</td>
         <td>{{ $item->is_disposable ? 'Habis Pakai' : 'Tidak Habis Pakai' }}</td>
         <td>
-          <a href="{{ route('transactions.create', $item->id) }}">Pilih</a>
+          <a href="{{ route('transactions.create', ['id' => $item->id]) }}">Pilih</a>
         </td>
       </tr>
     @endforeach

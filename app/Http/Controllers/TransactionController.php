@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
 use App\Models\Item;
+use App\Models\Room;
 use App\Models\Transaction;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class TransactionController extends Controller {
   /**
@@ -23,8 +26,10 @@ class TransactionController extends Controller {
    *
    * @return \Illuminate\Http\Response
    */
-  public function create() {
-    //
+  public function create(Request $request) {
+    $item = Item::find($request->id);
+    $rooms = Room::all();
+    return view('transactions.create', compact(['item', 'rooms']));
   }
 
   /**
@@ -34,7 +39,27 @@ class TransactionController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(StoreTransactionRequest $request) {
-    //
+    $request->validate([
+      'recipient_name' => 'required',
+      'quantity' => 'required',
+      'status' => 'required',
+      'user_id' => 'required',
+      'item_id' => 'required',
+      'room_id' => 'required'
+    ]);
+
+    $isDisposable = Item::where('id', $request->item_id)->value('is_disposable');
+
+    Transaction::create([
+      'recipient_name' => $request->recipient_name,
+      'quantity' => $request->quantity,
+      'checkout_date' => Carbon::now(),
+      'status' => $isDisposable ? 'Selesai' : 'Pending',
+      'user_id' => $request->user_id,
+      'item_id' => $request->item_id,
+      'room_id' => $request->room_id
+    ]);
+    return redirect()->route('transactions.index')->with('message', $isDisposable);
   }
 
   /**
