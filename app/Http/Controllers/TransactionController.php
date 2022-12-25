@@ -64,7 +64,7 @@ class TransactionController extends Controller {
       'item_id' => $request->item_id,
       'room_id' => $request->room_id
     ]);
-    return redirect()->route('transactions.index')->with('message', $isDisposable);
+    return redirect()->route('transactions.index')->with('message', 'Transaksi berhasil.');
   }
 
   /**
@@ -84,6 +84,7 @@ class TransactionController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function edit(Transaction $transaction) {
+    return view('transactions.edit', compact('transaction'));
   }
 
   /**
@@ -94,7 +95,24 @@ class TransactionController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function update(UpdateTransactionRequest $request, Transaction $transaction) {
-    //
+    $request->validate([
+      'condition' => 'required'
+    ]);
+
+    // Update transaction status from 'Pending' to 'Selesai'
+    $transaction->update([
+      'status' => 'Selesai'
+    ]);
+
+    // Update item stock based on asset condition when transaction is finished. If the user state that the asset is not 'Hilang', then the stock will be updated to 1, otherwise stock will remain 0.
+    // Update item condition.
+    Item::where('id', '=', $request->item_id)->update([
+      'stock' => $request->condition != 'Hilang' ? 1 : 0,
+      'condition' => $request->condition
+    ]);
+
+    // Redirect to transaction history page.
+    return redirect()->route('transactions.history')->with('message', 'Status Transaksi berhasil diperbarui.');
   }
 
   /**

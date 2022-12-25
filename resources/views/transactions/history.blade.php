@@ -26,6 +26,13 @@
 </style>
 
 <body>
+  @if (session('message'))
+    <div class="message">
+      {{ session('message') }}
+    </div>
+  @endif
+
+
   <table>
     <tr>
       <td>Tanggal Transaksi</td>
@@ -45,9 +52,11 @@
         <td>{{ $transaction->quantity }}</td>
         <td>{{ $transaction->room->name }}</td>
         <td>{{ $transaction->status }}</td>
-        @if ($transaction->status == 'Pending')
-          <td><a href="{{ route('transactions.edit', $transaction->item_id) }}">Selesaikan Transaksi</a></td>
-        @endif
+        <td>
+          @if ($transaction->status == 'Pending')
+            <a href="{{ route('transactions.edit', $transaction->id) }}">Selesaikan Transaksi</a>
+          @endif
+        </td>
       </tr>
     @endforeach
   </table>
