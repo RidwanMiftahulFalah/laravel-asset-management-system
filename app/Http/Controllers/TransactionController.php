@@ -17,7 +17,7 @@ class TransactionController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function index() {
-    $items = Item::where('is_active', '=', 1)->where('condition', '=', 'Layak Pakai')->get();
+    $items = Item::where('is_active', '=', 1)->where('condition', '=', 'Layak Pakai')->where('stock', '>=', 1)->get();
     return view('transactions.index', compact('items'));
   }
 
@@ -64,6 +64,13 @@ class TransactionController extends Controller {
       'item_id' => $request->item_id,
       'room_id' => $request->room_id
     ]);
+
+    $currentStock = Item::where('id', '=', $request->item_id)->value('stock');
+
+    Item::where('id', '=', $request->item_id)->update([
+      'stock' => $currentStock - $request->quantity
+    ]);
+
     return redirect()->route('transactions.index')->with('message', 'Transaksi berhasil.');
   }
 
