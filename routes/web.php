@@ -22,12 +22,17 @@ Route::get('/', function () {
   return view('welcome');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/', function () {
   return view('index');
 });
 
 Route::resource('categories', CategoryController::class);
+
 Route::resource('work_units', WorkUnitController::class);
+
 Route::resource('items', ItemController::class);
+
 Route::resource('rooms', RoomController::class);
+
+Route::get('/transactions/history', [TransactionController::class, 'history'])->name('transactions.history');
 Route::resource('transactions', TransactionController::class);

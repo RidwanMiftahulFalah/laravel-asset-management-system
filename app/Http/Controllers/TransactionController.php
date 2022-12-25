@@ -17,8 +17,13 @@ class TransactionController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function index() {
-    $items = Item::all();
+    $items = Item::where('is_active', '=', 1)->where('condition', '=', 'Layak Pakai')->get();
     return view('transactions.index', compact('items'));
+  }
+
+  public function history() {
+    $transactions = Transaction::orderBy('id', 'desc')->get();
+    return view('transactions.history', compact('transactions'));
   }
 
   /**
@@ -48,7 +53,7 @@ class TransactionController extends Controller {
       'room_id' => 'required'
     ]);
 
-    $isDisposable = Item::where('id', $request->item_id)->value('is_disposable');
+    $isDisposable = Item::where('id', '=', $request->item_id)->value('is_disposable');
 
     Transaction::create([
       'recipient_name' => $request->recipient_name,
@@ -79,7 +84,6 @@ class TransactionController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function edit(Transaction $transaction) {
-    //
   }
 
   /**

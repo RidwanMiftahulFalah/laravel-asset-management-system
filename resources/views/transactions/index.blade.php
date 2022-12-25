@@ -44,6 +44,7 @@
       <th>Hak Pakai</th>
       <th>Kategori</th>
       <th>Sifat Aset</th>
+      <th>Status</th>
       <th>Operasi</th>
     </tr>
 
@@ -55,6 +56,7 @@
         <td>{{ $item->usage_permission }}</td>
         <td>{{ $item->category->name }}</td>
         <td>{{ $item->is_disposable ? 'Habis Pakai' : 'Tidak Habis Pakai' }}</td>
+        <td>{{ $item->is_active ? 'Aktif' : 'Nonaktif' }}</td>
         <td>
           <a href="{{ route('transactions.create', ['id' => $item->id]) }}">Pilih</a>
         </td>
