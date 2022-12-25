@@ -66,7 +66,7 @@
       </tr>
 
       <tr>
-        <td><label>Condition : </label></td>
+        <td><label>Kondisi : </label></td>
         <td>
           <input type="radio" name="condition" id="layak-pakai" value="Layak Pakai"
             {{ $item->condition === 'Layak Pakai' ? 'checked' : '' }}>
