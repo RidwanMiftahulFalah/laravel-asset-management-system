@@ -15,7 +15,7 @@ return new class extends Migration {
       $table->id();
       $table->string('recipient_name', '75');
       $table->integer('quantity', false);
-      $table->date('checkout_date');
+      $table->date('date');
       $table->string('status', 15);
       $table->foreignId('user_id')->constrained('users', 'id');
       $table->foreignId('item_id')->constrained('items', 'id');

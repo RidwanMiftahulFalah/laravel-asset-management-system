@@ -28,10 +28,12 @@ class DatabaseSeeder extends Seeder {
     // ]);
 
     User::create([
-      'name' => 'Endang Wilhelmina',
+      'name' => 'Admin',
       'phone' => '081234567891',
-      'email' => 'endang@gmail.com',
-      'password' => bcrypt('123')
+      'email' => 'admin@gmail.com',
+      'password' => bcrypt('123'),
+      'is_admin' => true,
+      'is_active' => true
     ]);
 
     Category::create([
@@ -115,7 +117,7 @@ class DatabaseSeeder extends Seeder {
     Transaction::create([
       'recipient_name' => 'Maman Sutisna',
       'quantity' => 2,
-      'checkout_date' => Carbon::now(),
+      'date' => Carbon::now(),
       'status' => 'Pending',
       'user_id' => 1,
       'item_id' => 1,
