@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Dashboard') }}
+      {{ __('Riwayat Transaksi') }}
     </h2>
   </x-slot>
 
@@ -15,27 +15,26 @@
             </div>
           @endif
 
-
-          <table>
+          <table class="table-auto border-collapse border border-slate-500">
             <tr>
-              <td>Tanggal Transaksi</td>
-              <th>Nama Penerima</th>
-              <th>Nama Aset</th>
-              <th>Jumlah</th>
-              <th>Ruangan Penempatan</th>
-              <th>Status</th>
-              <th>Operasi</th>
+              <th class="py-2 px-2 border border-slate-400">Tanggal Transaksi</th>
+              <th class="py-2 px-2 border border-slate-400">Nama Penerima</th>
+              <th class="py-2 px-2 border border-slate-400">Nama Aset</th>
+              <th class="py-2 px-2 border border-slate-400">Jumlah</th>
+              <th class="py-2 px-2 border border-slate-400">Ruangan Penempatan</th>
+              <th class="py-2 px-2 border border-slate-400">Status</th>
+              <th class="py-2 px-2 border border-slate-400">Operasi</th>
             </tr>
 
             @foreach ($transactions as $transaction)
               <tr>
-                <td>{{ $transaction->date }}</td>
-                <td>{{ $transaction->recipient_name }}</td>
-                <td>{{ $transaction->item->name }}</td>
-                <td>{{ $transaction->quantity }}</td>
-                <td>{{ $transaction->room->name }}</td>
-                <td>{{ $transaction->status }}</td>
-                <td>
+                <td class="py-1 px-2 border border-slate-400">{{ $transaction->date }}</td>
+                <td class="py-1 px-2 border border-slate-400">{{ $transaction->recipient_name }}</td>
+                <td class="py-1 px-2 border border-slate-400">{{ $transaction->item->name }}</td>
+                <td class="py-1 px-2 border border-slate-400">{{ $transaction->quantity }}</td>
+                <td class="py-1 px-2 border border-slate-400">{{ $transaction->room->name }}</td>
+                <td class="py-1 px-2 border border-slate-400">{{ $transaction->status }}</td>
+                <td class="py-1 px-2 border border-slate-400">
                   @if ($transaction->status == 'Pending')
                     <a href="{{ route('transactions.edit', $transaction->id) }}">Selesaikan Transaksi</a>
                   @endif

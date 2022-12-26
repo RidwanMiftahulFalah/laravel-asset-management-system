@@ -17,7 +17,19 @@
           </x-nav-link>
 
           <x-nav-link :href="route('transactions.history')" :active="request()->routeIs('transactions.*')">
-            {{ __('Transaction') }}
+            {{ __('Transaksi') }}
+          </x-nav-link>
+
+          <x-nav-link :href="route('items.index')" :active="request()->routeIs('items.*')">
+            {{ __('Aset') }}
+          </x-nav-link>
+
+          <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
+            {{ __('Kategori Aset') }}
+          </x-nav-link>
+
+          <x-nav-link :href="route('work_units.index')" :active="request()->routeIs('work_units.*')">
+            {{ __('Unit Kerja') }}
           </x-nav-link>
         </div>
       </div>
@@ -79,6 +91,22 @@
     <div class="pt-2 pb-3 space-y-1">
       <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
         {{ __('Dashboard') }}
+      </x-responsive-nav-link>
+
+      <x-responsive-nav-link :href="route('transactions.history')" :active="request()->routeIs('transactions.*')">
+        {{ __('Transaksi') }}
+      </x-responsive-nav-link>
+
+      <x-responsive-nav-link :href="route('items.index')" :active="request()->routeIs('items.*')">
+        {{ __('Aset') }}
+      </x-responsive-nav-link>
+
+      <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
+        {{ __('Kategori Aset') }}
+      </x-responsive-nav-link>
+
+      <x-responsive-nav-link :href="route('work_units.index')" :active="request()->routeIs('work_units.*')">
+        {{ __('Unit Kerja') }}
       </x-responsive-nav-link>
     </div>
 
