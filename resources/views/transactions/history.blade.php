@@ -9,9 +9,11 @@
     <div class="mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-auto shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900">
+
           @if (session('message'))
-            <div class="message">
-              {{ session('message') }}
+            <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+              role="alert">
+              <span class="font-semibold">{{ session('message') }}</span>
             </div>
           @endif
 
@@ -26,7 +28,7 @@
                 <th class="py-2 px-2">Nama Penerima</th>
                 <th class="py-2 px-2 w-3/12">Nama Aset</th>
                 <th class="py-2 px-2">Jumlah</th>
-                <th class="py-2 px-2">Ruangan Penempatan</th>
+                <th class="py-2 px-2">Ruangan</th>
                 <th class="py-2 px-2">Status</th>
                 <th class="py-2 px-2 rounded-tr-lg">Operasi</th>
               </tr>
@@ -35,22 +37,23 @@
             <tbody class="text-center bg-slate-200">
               @foreach ($transactions as $transaction)
                 <tr class="border-b border-sky-800">
-                  <td class="py-1 px-2">{{ $transaction->date }}</td>
-                  <td class="py-1 px-2">{{ $transaction->recipient_name }}</td>
-                  <td class="py-1 px-2">{{ $transaction->item->name }}</td>
-                  <td class="py-1 px-2">{{ $transaction->quantity }}</td>
-                  <td class="py-1 px-2">{{ $transaction->room->name }}</td>
-                  <td class="py-1 px-2">
+                  <td class="py-3 px-2">{{ $transaction->date }}</td>
+                  <td class="py-3 px-2">{{ $transaction->recipient_name }}</td>
+                  <td class="py-3 px-2">{{ $transaction->item->name }}</td>
+                  <td class="py-3 px-2">{{ $transaction->quantity }}</td>
+                  <td class="py-3 px-2">{{ $transaction->room->name }}</td>
+                  <td class="py-3 px-2">
                     <div
-                      class="py-1 px-2 text-sm text-white font-bold rounded-full {{ $transaction->status === 'Pending' ? 'bg-amber-500' : 'bg-emerald-700' }}">
+                      class="py-1 px-3 text-sm text-white font-bold rounded-full {{ $transaction->status === 'Pending' ? 'bg-amber-500' : 'bg-emerald-700' }}">
                       {{ $transaction->status }}
                     </div>
                   </td>
-                  <td class="py-1 px-2">
+                  <td class="py-3 px-2">
                     @if ($transaction->status == 'Pending')
                       <a href="{{ route('transactions.edit', $transaction->id) }}"
-                        class="inline-block my-3 px-6 py-2.5 bg-slate-700 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-slate-800 hover:shadow-lg focus:bg-slate-800 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-900 active:shadow-lg transition duration-150 ease-in-out">Selesaikan
-                        Transaksi</a>
+                        class="inline-block my-3 px-6 py-2.5 bg-slate-700 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-slate-800 hover:shadow-lg focus:bg-slate-800 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-900 active:shadow-lg transition duration-150 ease-in-out">
+                        Selesaikan Transaksi
+                      </a>
                     @else
                       <div
                         class="inline-block my-3 px-6 py-2.5 bg-slate-400 text-slate-200 font-bold text-xs leading-tight uppercase rounded shadow-md">

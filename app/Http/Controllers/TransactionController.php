@@ -47,7 +47,6 @@ class TransactionController extends Controller {
     $request->validate([
       'recipient_name' => 'required',
       'quantity' => 'required',
-      'status' => 'required',
       'user_id' => 'required',
       'item_id' => 'required',
       'room_id' => 'required'
@@ -58,7 +57,7 @@ class TransactionController extends Controller {
     Transaction::create([
       'recipient_name' => $request->recipient_name,
       'quantity' => $request->quantity,
-      'checkout_date' => Carbon::now(),
+      'date' => Carbon::now(),
       'status' => $isDisposable ? 'Selesai' : 'Pending',
       'user_id' => $request->user_id,
       'item_id' => $request->item_id,

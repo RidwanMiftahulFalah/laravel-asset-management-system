@@ -15,8 +15,6 @@
     <table>
       <input type="hidden" name="user_id" value="1">
       <input type="hidden" name="item_id" value="{{ $item->id }}">
-      <input type="hidden" name="status" value="Pending">
-      <input type="hidden" name="checkout_date" value="2022-12-25">
       <tr>
         <td><label for="recipient-name">Nama Penerima : </label></td>
         <td><input type="text" name="recipient_name" id="recipient-name"></td>

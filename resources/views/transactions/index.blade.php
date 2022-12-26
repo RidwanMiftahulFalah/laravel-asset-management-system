@@ -1,68 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout>
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      {{ __('Transaksi') }}
+    </h2>
+  </x-slot>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <div class="py-5">
+    <div class="mx-auto sm:px-6 lg:px-8">
+      <div class="bg-white overflow-auto shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900">
 
-  <style>
-    table,
-    th,
-    td {
-      border: 1px solid black;
-      border-collapse: collapse;
-    }
+          @if (session('message'))
+            <div class="message">
+              {{ session('message') }}
+            </div>
+          @endif
 
-    table {
-      width: 70%;
-    }
+          <table class="w-full table-auto">
+            <thead class="bg-sky-800 text-white">
+              <tr>
+                <th class="py-2 px-2 rounded-tl-lg">Nama Aset</th>
+                <th class="py-2 px-2">Stok</th>
+                <th class="py-2 px-2">Kondisi Aset</th>
+                <th class="py-2 px-2">Hak Pakai</th>
+                <th class="py-2 px-2">Kategori</th>
+                <th class="py-2 px-2">Sifat Aset</th>
+                <th class="py-2 px-2">Status</th>
+                <th class="py-2 px-2 rounded-tr-lg">Operasi</th>
+              </tr>
+            </thead>
 
-    td {
-      text-align: center;
-    }
-  </style>
-</head>
-
-<body>
-  <h1>Halaman Transaksi</h1>
-
-  {{-- @dd(session('message')) --}}
-
-  @if (session('message'))
-    <div class="message">
-      {{ session('message') }}
+            <tbody class="text-center bg-slate-200">
+              @foreach ($items as $item)
+                <tr class="border-b border-sky-800">
+                  <td class="py-3 px-2">{{ $item->name }}</td>
+                  <td class="py-3 px-2">{{ $item->stock }}</td>
+                  <td class="py-3 px-2">{{ $item->condition }}</td>
+                  <td class="py-3 px-2">{{ $item->usage_permission }}</td>
+                  <td class="py-3 px-2">{{ $item->category->name }}</td>
+                  <td class="py-3 px-2">{{ $item->is_disposable ? 'Habis Pakai' : 'Tidak Habis Pakai' }}</td>
+                  <td class="py-3 px-2">{{ $item->is_active ? 'Aktif' : 'Nonaktif' }}</td>
+                  <td class="py-3 px-2">
+                    <a href="{{ route('transactions.create', ['id' => $item->id]) }}"
+                      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Pilih</a>
+                  </td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  @endif
-
-  <table>
-    <tr>
-      <th>Nama Aset</th>
-      <th>Stok</th>
-      <th>Kondisi Aset</th>
-      <th>Hak Pakai</th>
-      <th>Kategori</th>
-      <th>Sifat Aset</th>
-      <th>Status</th>
-      <th>Operasi</th>
-    </tr>
-
-    @foreach ($items as $item)
-      <tr>
-        <td>{{ $item->name }}</td>
-        <td>{{ $item->stock }}</td>
-        <td>{{ $item->condition }}</td>
-        <td>{{ $item->usage_permission }}</td>
-        <td>{{ $item->category->name }}</td>
-        <td>{{ $item->is_disposable ? 'Habis Pakai' : 'Tidak Habis Pakai' }}</td>
-        <td>{{ $item->is_active ? 'Aktif' : 'Nonaktif' }}</td>
-        <td>
-          <a href="{{ route('transactions.create', ['id' => $item->id]) }}">Pilih</a>
-        </td>
-      </tr>
-    @endforeach
-  </table>
-</body>
-
-</html>
+  </div>
+</x-app-layout>
