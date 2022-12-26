@@ -51,6 +51,10 @@
                       <a href="{{ route('transactions.edit', $transaction->id) }}"
                         class="inline-block my-3 px-6 py-2.5 bg-slate-700 text-white font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-slate-800 hover:shadow-lg focus:bg-slate-800 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-900 active:shadow-lg transition duration-150 ease-in-out">Selesaikan
                         Transaksi</a>
+                    @else
+                      <div
+                        class="inline-block my-3 px-6 py-2.5 bg-slate-400 text-slate-200 font-bold text-xs leading-tight uppercase rounded shadow-md">
+                        Selesaikan Transaksi</div>
                     @endif
                   </td>
                 </tr>
