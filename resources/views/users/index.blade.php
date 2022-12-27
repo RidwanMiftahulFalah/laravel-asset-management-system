@@ -38,36 +38,40 @@
               </thead>
 
               <tbody class="text-center bg-slate-200">
-                @foreach ($users as $user)
-                  <tr class="border-b border-sky-800">
-                    <td class="border-r border-r-sky-800">{{ $loop->iteration }}</td>
+                @if ($users->count())
+                  @foreach ($users as $user)
+                    <tr class="border-b border-sky-800">
+                      <td class="border-r border-r-sky-800">{{ $loop->iteration }}</td>
 
-                    <td>{{ $user->name }}</td>
+                      <td>{{ $user->name }}</td>
 
-                    <td>{{ $user->email }}</td>
+                      <td>{{ $user->email }}</td>
 
-                    <td>{{ $user->phone }}</td>
+                      <td>{{ $user->phone }}</td>
 
-                    <td>{{ $user->is_admin ? 'Super Admin' : 'Admin' }}</td>
+                      <td>{{ $user->is_admin ? 'Super Admin' : 'Admin' }}</td>
 
-                    <td>
-                      <span
-                        class="{{ $user->is_active ? 'bg-green-300' : 'bg-red-300' }} {{ $user->is_active ? 'text-green-900' : 'text-red-900' }} text-md font-extrabold px-3 py-1 rounded">
-                        {{ $user->is_active ? 'Aktif' : 'Nonaktif' }}
-                      </span>
-                    </td>
+                      <td>
+                        <span
+                          class="{{ $user->is_active ? 'bg-green-300' : 'bg-red-300' }} {{ $user->is_active ? 'text-green-900' : 'text-red-900' }} text-md font-extrabold px-3 py-1 rounded">
+                          {{ $user->is_active ? 'Aktif' : 'Nonaktif' }}
+                        </span>
+                      </td>
 
-                    <td class="py-5 border-l border-l-sky-800">
-                      <form action="{{ route('users.update', $user->id) }}" method="post">
-                        @csrf
-                        @method('PUT')
+                      <td class="py-5 border-l border-l-sky-800">
+                        <form action="{{ route('users.update', $user->id) }}" method="post">
+                          @csrf
+                          @method('PUT')
 
-                        <button type="submit"
-                          class="inline-flex items-center justify-center w-32 py-1.5 {{ $user->is_active ? 'bg-red-600' : 'bg-emerald-600' }} border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:{{ $user->is_active ? 'bg-red-500' : 'bg-emerald-500' }} focus:{{ $user->is_active ? 'bg-red-500' : 'bg-emerald-500' }} active:{{ $user->is_active ? 'bg-red-700' : 'bg-emerald-700' }} focus:outline-none focus:ring-2 focus:{{ $user->is_active ? 'ring-red-500' : 'ring-emerald-500' }} focus:ring-offset-2 transition ease-in-out duration-150"">{{ $user->is_active ? 'Nonaktifkan' : 'Aktifkan' }}</button>
-                      </form>
-                    </td>
-                  </tr>
-                @endforeach
+                          <button type="submit"
+                            class="inline-flex items-center justify-center w-32 py-1.5 {{ $user->is_active ? 'bg-red-600' : 'bg-emerald-600' }} border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:{{ $user->is_active ? 'bg-red-500' : 'bg-emerald-500' }} focus:{{ $user->is_active ? 'bg-red-500' : 'bg-emerald-500' }} active:{{ $user->is_active ? 'bg-red-700' : 'bg-emerald-700' }} focus:outline-none focus:ring-2 focus:{{ $user->is_active ? 'ring-red-500' : 'ring-emerald-500' }} focus:ring-offset-2 transition ease-in-out duration-150"">{{ $user->is_active ? 'Nonaktifkan' : 'Aktifkan' }}</button>
+                        </form>
+                      </td>
+                    </tr>
+                  @endforeach
+                @else
+                  <td colspan="7">Data tidak ditemukan.</td>
+                @endif
               </tbody>
             </table>
           </div>
