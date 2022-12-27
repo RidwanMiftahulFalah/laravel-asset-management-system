@@ -24,7 +24,8 @@
           <table class="w-full table-auto">
             <thead class="bg-sky-800 text-white">
               <tr>
-                <th class="py-2 px-2 rounded-tl-lg">Tanggal Transaksi</th>
+                <th class="py-2 px-2 rounded-tl-lg">#</th>
+                <th class="py-2 px-2">Tanggal</th>
                 <th class="py-2 px-2">Nama Penerima</th>
                 <th class="py-2 px-2 w-3/12">Nama Aset</th>
                 <th class="py-2 px-2">Jumlah</th>
@@ -36,15 +37,16 @@
 
             <tbody class="text-center bg-slate-200">
               @foreach ($transactions as $transaction)
-                <tr class="border-b border-sky-800">
+                <tr class="border border-sky-800">
+                  <td class="py-3 px-3">{{ $loop->iteration }}</td>
                   <td class="py-3 px-2">{{ $transaction->date }}</td>
                   <td class="py-3 px-2">{{ $transaction->recipient_name }}</td>
                   <td class="py-3 px-2">{{ $transaction->item->name }}</td>
                   <td class="py-3 px-2">{{ $transaction->quantity }}</td>
                   <td class="py-3 px-2">{{ $transaction->room->name }}</td>
-                  <td class="py-3 px-2">
+                  <td class="py-3 px-2 flex justify-center">
                     <div
-                      class="py-1 px-3 text-sm text-white font-bold rounded-full {{ $transaction->status === 'Pending' ? 'bg-amber-500' : 'bg-emerald-700' }}">
+                      class="py-1 w-20 text-sm text-white font-bold rounded-full {{ $transaction->status === 'Pending' ? 'bg-amber-500' : 'bg-emerald-700' }}">
                       {{ $transaction->status }}
                     </div>
                   </td>
