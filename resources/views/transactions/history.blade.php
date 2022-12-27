@@ -34,9 +34,9 @@
               </tr>
             </thead>
 
-            <tbody class="text-center bg-slate-200">
+            <tbody class="border-b border-sky-800 text-center bg-slate-200">
               @foreach ($transactions as $transaction)
-                <tr class="border-b border-sky-800">
+                <tr class="border-t border-sky-800">
                   <td class="py-3 px-2">{{ $transaction->date }}</td>
                   <td class="py-3 px-2">{{ $transaction->recipient_name }}</td>
                   <td class="py-3 px-2">{{ $transaction->item->name }}</td>
