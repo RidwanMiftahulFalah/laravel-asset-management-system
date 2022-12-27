@@ -21,11 +21,17 @@
             <thead class="bg-sky-800 text-white">
               <tr>
                 <th class="py-2 px-2 rounded-tl-lg">#</th>
+
                 <th class="py-2 px-2">Nama Pengguna</th>
+
                 <th class="py-2 px-2">Email</th>
+
                 <th class="py-2 px-2">Telepon</th>
+
                 <th class="py-2 px-2">Peran</th>
+
                 <th class="py-2 px-2">Status</th>
+
                 <th class="py-2 px-2 rounded-tr-lg">Opsi</th>
               </tr>
             </thead>
@@ -43,9 +49,12 @@
 
                   <td>{{ $user->is_admin ? 'Super Admin' : 'Admin' }}</td>
 
-
-
-                  <td>{{ $user->is_active ? 'Aktif' : 'Nonaktif' }}</td>
+                  <td>
+                    <span
+                      class="{{ $user->is_active ? 'bg-green-300' : 'bg-red-300' }} {{ $user->is_active ? 'text-green-900' : 'text-red-900' }} text-md font-extrabold px-3 py-1 rounded">
+                      {{ $user->is_active ? 'Aktif' : 'Nonaktif' }}
+                    </span>
+                  </td>
 
                   <td class="py-5 border-l border-l-sky-800">
                     <form action="{{ route('users.update', $user->id) }}" method="post">

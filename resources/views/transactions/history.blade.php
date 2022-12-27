@@ -25,17 +25,25 @@
             <thead class="bg-sky-800 text-white">
               <tr>
                 <th class="py-2 px-2 rounded-tl-lg">#</th>
+
                 <th class="py-2 px-2">Tanggal</th>
+
                 <th class="py-2 px-2">Nama Penerima</th>
+
                 <th class="py-2 px-2 w-3/12">Nama Aset</th>
+
                 <th class="py-2 px-2">Jumlah</th>
+
                 <th class="py-2 px-2">Ruangan</th>
+
                 <th class="py-2 px-2">Status</th>
+
                 <th class="py-2 px-2 rounded-tr-lg">Opsi</th>
               </tr>
             </thead>
 
             <tbody class="text-center bg-slate-200">
+
               @foreach ($transactions as $transaction)
                 <tr class="border-b border-sky-800">
                   <td class="py-3 px-3 border-r border-r-sky-800">{{ $loop->iteration }}</td>
@@ -72,6 +80,7 @@
                   </td>
                 </tr>
               @endforeach
+              
             </tbody>
           </table>
         </div>

@@ -25,9 +25,12 @@
             <thead class="bg-sky-800 text-white">
               <tr>
                 <th class="py-2 px-2 rounded-tl-lg">#</th>
+
                 <th class="py-2 px-2">Nama Unit Kerja</th>
+
                 <th class="py-2 px-2">Status</th>
-                <th class="py-2 px-2 rounded-tr-lg">Operasi</th>
+
+                <th class="py-2 px-2 rounded-tr-lg">Opsi</th>
               </tr>
             </thead>
 
@@ -35,8 +38,16 @@
               @foreach ($workUnits as $workUnit)
                 <tr class="border-b border-sky-800">
                   <td class="border-r border-r-sky-800">{{ $loop->iteration }}</td>
+
                   <td>{{ $workUnit->name }}</td>
-                  <td>{{ $workUnit->is_active ? 'Aktif' : 'Nonaktif' }}</td>
+
+                  <td>
+                    <span
+                      class="{{ $workUnit->is_active ? 'bg-green-300' : 'bg-red-300' }} {{ $workUnit->is_active ? 'text-green-900' : 'text-red-900' }} text-md font-extrabold px-3 py-1 rounded">
+                      {{ $workUnit->is_active ? 'Aktif' : 'Nonaktif' }}
+                    </span>
+                  </td>
+
                   <td class="py-2 border-l border-l-sky-800">
                     <ul>
                       <li>
