@@ -1,20 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout>
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      {{ __('Ubah Data Kategori') }}
+    </h2>
+  </x-slot>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Ubah Data Kategori</title>
-</head>
+  <div class="py-5">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900">
 
-<body>
-  <form action="{{ route('categories.update', $category->id) }}" method="post">
-    @csrf
-    @method('PUT')
-    <input type="text" name="name" id="name" value="{{ $category->name }}">
-    <button type="submit">Simpan</button>
-  </form>
-</body>
+          <form action="{{ route('categories.update', $category->id) }}" method="post">
+            @csrf
+            @method('PUT')
 
-</html>
+            <div class="mb-3">
+              <label for="name" class="block font-medium text-sm text-gray-700">Nama Kategori</label>
+              <input type="text" name="name" id="name" value="{{ $category->name }}"
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+            </div>
+
+            <button type="submit"
+              class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+              Simpan
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</x-app-layout>

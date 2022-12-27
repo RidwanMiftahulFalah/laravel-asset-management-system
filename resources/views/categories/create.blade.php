@@ -14,9 +14,8 @@
             @csrf
 
             <div class="mb-3">
-
               <label for="name" class="block font-medium text-sm text-gray-700">Nama Kategori</label>
-              <input type="text" name="name" id="name" placeholder=""
+              <input type="text" name="name" id="name"
                 class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
             </div>
 
