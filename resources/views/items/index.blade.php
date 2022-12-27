@@ -22,10 +22,10 @@
             Tambah Data Aset
           </a>
 
-          <table class="w-full table-auto">
+          <table class="w-full rounded-lg  border-sky-800  table-auto">
             <thead class="bg-sky-800 text-white">
               <tr>
-                <th class="py-2 px-2 rounded-tl-lg">ID</th>
+                <th class="py-2 px-3 rounded-tl-lg">#</th>
                 <th class="py-2 px-2">Nama Aset</th>
                 <th class="py-2 px-2">Sifat Aset</th>
                 <th class="py-2 px-2">Stok</th>
@@ -40,8 +40,8 @@
 
             <tbody class="text-center bg-slate-200">
               @foreach ($items as $item)
-                <tr class="border-b border-sky-800">
-                  <td>{{ $item->id }}</td>
+                <tr class="">
+                  <td>{{ $loop->iteration }}</td>
                   <td>{{ $item->name }}</td>
                   <td>{{ $item->is_disposable ? 'Habis Pakai' : 'Tidak Habis Pakai' }}</td>
                   <td>{{ $item->stock }}</td>
