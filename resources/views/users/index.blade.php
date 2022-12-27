@@ -48,9 +48,9 @@
                   <td>{{ $user->is_active ? 'Aktif' : 'Nonaktif' }}</td>
 
                   <td class="py-5 border-l border-l-sky-800">
-                    <form action="{{ route('users.destroy', $user->id) }}" method="post">
+                    <form action="{{ route('users.update', $user->id) }}" method="post">
                       @csrf
-                      @method('DELETE')
+                      @method('PUT')
 
                       <button type="submit"
                         class="inline-flex items-center justify-center w-32 py-1.5 {{ $user->is_active ? 'bg-red-600' : 'bg-emerald-600' }} border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:{{ $user->is_active ? 'bg-red-500' : 'bg-emerald-500' }} focus:{{ $user->is_active ? 'bg-red-500' : 'bg-emerald-500' }} active:{{ $user->is_active ? 'bg-red-700' : 'bg-emerald-700' }} focus:outline-none focus:ring-2 focus:{{ $user->is_active ? 'ring-red-500' : 'ring-emerald-500' }} focus:ring-offset-2 transition ease-in-out duration-150"">{{ $user->is_active ? 'Nonaktifkan' : 'Aktifkan' }}</button>

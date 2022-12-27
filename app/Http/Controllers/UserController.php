@@ -65,7 +65,13 @@ class UserController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, User $user) {
-    //
+    $this->authorize('is-admin');
+
+    $message = 'Akun User yang dipilih berhasil ' . ($user->is_active ? 'dinonaktifkan.' : 'diaktifkan.');
+
+    $user->update($user->is_active ? ['is_active' => 0] : ['is_active' => 1]);
+
+    return redirect()->route('users.index')->with('message', $message);
   }
 
   /**
@@ -75,12 +81,6 @@ class UserController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy(User $user) {
-    $this->authorize('is-admin');
-
-    $message = 'Akun User yang dipilih berhasil ' . ($user->is_active ? 'dinonaktifkan.' : 'diaktifkan.');
-
-    $user->update($user->is_active ? ['is_active' => 0] : ['is_active' => 1]);
-
-    return redirect()->route('users.index')->with('message', $message);
+    // 
   }
 }

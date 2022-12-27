@@ -35,14 +35,14 @@ Route::middleware('auth')->group(function () {
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-  Route::resource('users', UserController::class);
+  Route::resource('users', UserController::class)->only(['index', 'update']);
 
   Route::resource('categories', CategoryController::class)->except(['show']);
 
   Route::resource('work_units', WorkUnitController::class)->except(['show']);
 
   Route::resource('rooms', RoomController::class);
-  
+
   Route::resource('items', ItemController::class);
 
   Route::get('/transactions/history', [TransactionController::class, 'history'])->name('transactions.history');
