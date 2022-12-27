@@ -18,12 +18,12 @@ class TransactionController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function index() {
-    $items = Item::where('is_active', '=', 1)->where('condition', '=', 'Layak Pakai')->where('stock', '>=', 1)->get();
+    $items = Item::where('is_active', '=', 1)->where('condition', '=', 'Layak Pakai')->where('stock', '>=', 1)->paginate(10);
     return view('transactions.index', compact('items'));
   }
 
   public function history() {
-    $transactions = Transaction::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->get();
+    $transactions = Transaction::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->paginate(10);
     return view('transactions.history', compact('transactions'));
   }
 
