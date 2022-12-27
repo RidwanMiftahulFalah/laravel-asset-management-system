@@ -20,17 +20,19 @@
             {{ __('Transaksi') }}
           </x-nav-link>
 
-          <x-nav-link :href="route('items.index')" :active="request()->routeIs('items.*')">
-            {{ __('Aset') }}
-          </x-nav-link>
+          @can('is-admin')
+            <x-nav-link :href="route('items.index')" :active="request()->routeIs('items.*')">
+              {{ __('Aset') }}
+            </x-nav-link>
 
-          <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
-            {{ __('Kategori Aset') }}
-          </x-nav-link>
+            <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
+              {{ __('Kategori Aset') }}
+            </x-nav-link>
 
-          <x-nav-link :href="route('work_units.index')" :active="request()->routeIs('work_units.*')">
-            {{ __('Unit Kerja') }}
-          </x-nav-link>
+            <x-nav-link :href="route('work_units.index')" :active="request()->routeIs('work_units.*')">
+              {{ __('Unit Kerja') }}
+            </x-nav-link>
+          @endcan
         </div>
       </div>
 

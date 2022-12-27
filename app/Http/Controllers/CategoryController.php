@@ -13,6 +13,8 @@ class CategoryController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function index() {
+    $this->authorize('is-admin');
+
     return view('categories.index', [
       'categories' => Category::all()
     ]);
@@ -24,6 +26,8 @@ class CategoryController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function create() {
+    $this->authorize('is-admin');
+
     return view('categories.create');
   }
 
@@ -34,6 +38,8 @@ class CategoryController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(StoreCategoryRequest $request) {
+    $this->authorize('is-admin');
+
     $request->validate([
       'name' => 'required'
     ]);
@@ -59,6 +65,8 @@ class CategoryController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function edit(Category $category) {
+    $this->authorize('is-admin');
+
     return view('categories.edit', compact('category'));
   }
 
@@ -70,6 +78,8 @@ class CategoryController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function update(UpdateCategoryRequest $request, Category $category) {
+    $this->authorize('is-admin');
+
     $request->validate([
       'name' => 'required'
     ]);
@@ -85,6 +95,8 @@ class CategoryController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy(Category $category) {
+    $this->authorize('is-admin');
+
     $message = 'Data Kategori yang dipilih berhasil ' . ($category->is_active ? 'dinonaktifkan.' : 'diaktifkan.');
 
     $category->update($category->is_active ? ['is_active' => 0] : ['is_active' => 1]);

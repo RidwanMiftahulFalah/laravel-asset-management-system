@@ -15,6 +15,8 @@ class ItemController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function index() {
+    $this->authorize('is-admin');
+
     $items = Item::all();
     return view('items.index', compact('items'));
   }
@@ -25,6 +27,8 @@ class ItemController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function create() {
+    $this->authorize('is-admin');
+
     $categories = Category::all();
     $workUnits = WorkUnit::all();
     return view('items.create', compact(['categories', 'workUnits']));
@@ -37,6 +41,8 @@ class ItemController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(StoreItemRequest $request) {
+    $this->authorize('is-admin');
+
     $request->validate([
       'name' => 'required',
       'is_disposable' => 'required',
@@ -57,6 +63,8 @@ class ItemController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function show(Item $item) {
+    $this->authorize('is-admin');
+
     return view('items.show', compact('item'));
   }
 
@@ -67,6 +75,8 @@ class ItemController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function edit(Item $item) {
+    $this->authorize('is-admin');
+
     $categories = Category::all();
     $workUnits = WorkUnit::all();
 
@@ -81,6 +91,8 @@ class ItemController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function update(UpdateItemRequest $request, Item $item) {
+    $this->authorize('is-admin');
+
     $request->validate([
       'name' => 'required',
       'is_disposable' => 'required',
@@ -102,6 +114,8 @@ class ItemController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy(Item $item) {
+    $this->authorize('is-admin');
+
     $message = 'Data Aset yang dipilih berhasil ' . ($item->is_active ? 'dinonaktifkan.' : 'diaktifkan.');
 
     // For toggling item status, if the item status is active it will be updated to nonactive, vice-versa

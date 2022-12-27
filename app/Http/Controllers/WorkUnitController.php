@@ -13,6 +13,8 @@ class WorkUnitController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function index() {
+    $this->authorize('is-admin');
+
     $workUnits = WorkUnit::all();
     return view('work_units.index', compact('workUnits'));
   }
@@ -23,6 +25,8 @@ class WorkUnitController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function create() {
+    $this->authorize('is-admin');
+
     return view('work_units.create');
   }
 
@@ -33,6 +37,8 @@ class WorkUnitController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(StoreWorkUnitRequest $request) {
+    $this->authorize('is-admin');
+
     $request->validate([
       'name' => 'required'
     ]);
@@ -58,6 +64,8 @@ class WorkUnitController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function edit(WorkUnit $workUnit) {
+    $this->authorize('is-admin');
+
     return view('work_units.edit', compact('workUnit'));
   }
 
@@ -69,6 +77,8 @@ class WorkUnitController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function update(UpdateWorkUnitRequest $request, WorkUnit $workUnit) {
+    $this->authorize('is-admin');
+
     $request->validate([
       'name' => 'required'
     ]);
@@ -84,6 +94,8 @@ class WorkUnitController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy(WorkUnit $workUnit) {
+    $this->authorize('is-admin');
+
     $message = 'Data Unit Kerja yang dipilih berhasil ' . ($workUnit->is_active ? 'dinonaktifkan.' : 'diaktifkan.');
 
     $workUnit->update($workUnit->is_active ? ['is_active' => 0] : ['is_active' => 1]);
