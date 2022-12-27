@@ -16,7 +16,7 @@ class CategoryController extends Controller {
     $this->authorize('is-admin');
 
     return view('categories.index', [
-      'categories' => Category::all()
+      'categories' => Category::paginate(5)
     ]);
   }
 
