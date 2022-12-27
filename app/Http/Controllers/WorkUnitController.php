@@ -15,7 +15,7 @@ class WorkUnitController extends Controller {
   public function index() {
     $this->authorize('is-admin');
 
-    $workUnits = WorkUnit::all();
+    $workUnits = WorkUnit::paginate(5);
     return view('work_units.index', compact('workUnits'));
   }
 
