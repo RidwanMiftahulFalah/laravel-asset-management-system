@@ -23,7 +23,7 @@ class TransactionController extends Controller {
   }
 
   public function history() {
-    $transactions = Transaction::orderBy('id', 'desc')->get();
+    $transactions = Transaction::where('user_id', '=', Auth::id())->orderBy('id', 'desc')->get();
     return view('transactions.history', compact('transactions'));
   }
 
