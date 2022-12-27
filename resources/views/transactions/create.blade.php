@@ -13,7 +13,6 @@
     @csrf
 
     <table>
-      <input type="hidden" name="user_id" value="1">
       <input type="hidden" name="item_id" value="{{ $item->id }}">
       <tr>
         <td><label for="recipient-name">Nama Penerima : </label></td>

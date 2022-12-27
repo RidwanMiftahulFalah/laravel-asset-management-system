@@ -9,6 +9,7 @@ use App\Models\Room;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller {
   /**
@@ -47,7 +48,6 @@ class TransactionController extends Controller {
     $request->validate([
       'recipient_name' => 'required',
       'quantity' => 'required',
-      'user_id' => 'required',
       'item_id' => 'required',
       'room_id' => 'required'
     ]);
@@ -59,7 +59,7 @@ class TransactionController extends Controller {
       'quantity' => $request->quantity,
       'date' => Carbon::now(),
       'status' => $isDisposable ? 'Selesai' : 'Pending',
-      'user_id' => $request->user_id,
+      'user_id' => Auth::id(),
       'item_id' => $request->item_id,
       'room_id' => $request->room_id
     ]);
