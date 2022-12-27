@@ -103,22 +103,24 @@
         {{ __('Transaksi') }}
       </x-responsive-nav-link>
 
-      <x-responsive-nav-link :href="route('items.index')" :active="request()->routeIs('items.*')">
-        {{ __('Aset') }}
-      </x-responsive-nav-link>
+      @can('is-admin')
+        <x-responsive-nav-link :href="route('items.index')" :active="request()->routeIs('items.*')">
+          {{ __('Aset') }}
+        </x-responsive-nav-link>
 
-      <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
-        {{ __('Kategori Aset') }}
-      </x-responsive-nav-link>
+        <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
+          {{ __('Kategori Aset') }}
+        </x-responsive-nav-link>
 
-      <x-responsive-nav-link :href="route('work_units.index')" :active="request()->routeIs('work_units.*')">
-        {{ __('Unit Kerja') }}
-      </x-responsive-nav-link>
+        <x-responsive-nav-link :href="route('work_units.index')" :active="request()->routeIs('work_units.*')">
+          {{ __('Unit Kerja') }}
+        </x-responsive-nav-link>
 
-      <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
-        {{ __('User') }}
-      </x-responsive-nav-link>
-    </div>
+        <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+          {{ __('User') }}
+        </x-responsive-nav-link>
+      </div>
+    @endcan
 
     <!-- Responsive Settings Options -->
     <div class="pt-4 pb-1 border-t border-gray-200">
