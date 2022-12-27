@@ -11,44 +11,39 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
-class RegisteredUserController extends Controller
-{
-    /**
-     * Display the registration view.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('auth.register');
-    }
+class RegisteredUserController extends Controller {
+  /**
+   * Display the registration view.
+   *
+   * @return \Illuminate\View\View
+   */
+  public function create() {
+    return view('auth.register');
+  }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+  /**
+   * Handle an incoming registration request.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\RedirectResponse
+   *
+   * @throws \Illuminate\Validation\ValidationException
+   */
+  public function store(Request $request) {
+    $request->validate([
+      'name' => ['required', 'string', 'max:255'],
+      'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+      'phone' => ['required', 'string', 'max:13'],
+      'password' => ['required', 'confirmed', Rules\Password::defaults()],
+    ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+    $user = User::create([
+      'name' => $request->name,
+      'email' => $request->email,
+      'phone' => $request->phone,
+      'password' => Hash::make($request->password),
+    ]);
 
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
-    }
+    return redirect()->route('login')->with('message', 'Akun berhasil dibuat. Silakan hubungi administrator untuk aktivasi akun agar dapat digunakan.');
+  }
 }
