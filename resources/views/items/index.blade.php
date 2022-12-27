@@ -1,61 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout>
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      {{ __('Daftar Aset') }}
+    </h2>
+  </x-slot>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
+  <div class="py-5">
+    <div class="mx-auto sm:px-6 lg:px-8">
+      <div class="bg-white overflow-auto shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900">
 
-<body>
-  <h1>Data Aset</h1>
-  <a href="{{ route('items.create') }}">Tambah Data Aset</a>
+          @if (session('message'))
+            <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+              role="alert">
+              <span class="font-semibold">{{ session('message') }}</span>
+            </div>
+          @endif
 
-  @if (session('message'))
-    <div class="message">
-      {{ session('message') }}
+          <a href="{{ route('items.create') }}"
+            class="inline-flex items-center mb-3 px-4 py-2 bg-emerald-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-500 focus:bg-emerald-500 active:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+            Tambah Data Aset
+          </a>
+
+          <table class="w-full table-auto">
+            <thead class="bg-sky-800 text-white">
+              <tr>
+                <th class="py-2 px-2 rounded-tl-lg">ID</th>
+                <th class="py-2 px-2">Nama Aset</th>
+                <th class="py-2 px-2">Sifat Aset</th>
+                <th class="py-2 px-2">Stok</th>
+                <th class="py-2 px-2">Kondisi</th>
+                <th class="py-2 px-2">Kategori</th>
+                <th class="py-2 px-2">Unit Kerja</th>
+                <th class="py-2 px-2">Hak Pakai</th>
+                <th class="py-2 px-2">Status</th>
+                <th class="py-2 px-2 rounded-tr-lg">Operasi</th>
+              </tr>
+            </thead>
+
+            <tbody class="text-center bg-slate-200">
+              @foreach ($items as $item)
+                <tr class="border-b border-sky-800">
+                  <td>{{ $item->id }}</td>
+                  <td>{{ $item->name }}</td>
+                  <td>{{ $item->is_disposable ? 'Habis Pakai' : 'Tidak Habis Pakai' }}</td>
+                  <td>{{ $item->stock }}</td>
+                  <td>{{ $item->condition }}</td>
+                  <td>{{ $item->category->name }}</td>
+                  <td>{{ $item->workUnit->name }}</td>
+                  <td>{{ $item->usage_permission }}</td>
+                  <td>{{ $item->is_active ? 'Aktif' : 'Nonaktif' }}</td>
+                  <td class="py-2 px-3">
+                    <ul>
+                      <li>
+                        <a href="{{ route('items.show', $item->id) }}"
+                          class="inline-flex items-center justify-center w-32 py-1.5 bg-cyan-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-cyan-500 focus:bg-cyan-500 active:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 transition ease-in-out duration-150">Tampilkan</a>
+                      </li>
+
+                      <li>
+                        <a href="{{ route('items.edit', $item->id) }}"
+                          class="inline-flex items-center justify-center w-32 my-1 py-1.5 bg-amber-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-amber-400 focus:bg-amber-400 active:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 transition ease-in-out duration-150">Ubah</a>
+                      </li>
+
+                      <li>
+                        <form action="{{ route('items.destroy', $item->id) }}" method="post">
+                          @csrf
+                          @method('DELETE')
+
+                          <button type="submit"
+                            class="inline-flex items-center justify-center mb-3 w-32 py-1.5 {{ $item->is_active ? 'bg-red-600' : 'bg-emerald-600' }} border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:{{ $item->is_active ? 'bg-red-500' : 'bg-emerald-500' }} focus:{{ $item->is_active ? 'bg-red-500' : 'bg-emerald-500' }} active:{{ $item->is_active ? 'bg-red-700' : 'bg-emerald-700' }} focus:outline-none focus:ring-2 focus:{{ $item->is_active ? 'ring-red-500' : 'ring-emerald-500' }} focus:ring-offset-2 transition ease-in-out duration-150">{{ $item->is_active ? 'Nonaktifkan' : 'Aktifkan' }}</button>
+                      </li>
+                      </form>
+
+                    </ul>
+                  </td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  @endif
-
-  <table>
-    <tr>
-      <th>ID</th>
-      <th>Nama Aset</th>
-      <th>Sifat Aset</th>
-      <th>Stok</th>
-      <th>Kondisi</th>
-      <th>Kategori</th>
-      <th>Unit Kerja</th>
-      <th>Hak Pakai</th>
-      <th>Status</th>
-      <th>Operasi</th>
-    </tr>
-
-    @foreach ($items as $item)
-      <tr>
-        <td>{{ $item->id }}</td>
-        <td>{{ $item->name }}</td>
-        <td>{{ $item->is_disposable ? 'Habis Pakai' : 'Tidak Habis Pakai' }}</td>
-        <td>{{ $item->stock }}</td>
-        <td>{{ $item->condition }}</td>
-        <td>{{ $item->category->name }}</td>
-        <td>{{ $item->workUnit->name }}</td>
-        <td>{{ $item->usage_permission }}</td>
-        <td>{{ $item->is_active ? 'Aktif' : 'Nonaktif' }}</td>
-        <td>
-          <a href="{{ route('items.show', $item->id) }}">Tampilkan</a>
-          <a href="{{ route('items.edit', $item->id) }}">Ubah</a>
-          <form action="{{ route('items.destroy', $item->id) }}" method="post">
-            @csrf
-            @method('DELETE')
-
-            <button type="submit">{{ $item->is_active ? 'Nonaktifkan' : 'Aktifkan' }}</button>
-          </form>
-        </td>
-      </tr>
-    @endforeach
-  </table>
-</body>
-
-</html>
+  </div>
+</x-app-layout>
