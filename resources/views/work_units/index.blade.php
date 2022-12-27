@@ -1,65 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout>
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      {{ __('Unit Kerja') }}
+    </h2>
+  </x-slot>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <div class="py-5">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900">
 
-  <style>
-    table,
-    th,
-    td {
-      border: 1px solid black;
-      border-collapse: collapse;
-    }
+          @if (session('message'))
+            <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+              role="alert">
+              <span class="font-semibold">{{ session('message') }}</span>
+            </div>
+          @endif
 
-    table {
-      width: 30%;
-    }
+          <a href="{{ route('work_units.create') }}"
+            class="inline-flex items-center mb-3 px-4 py-2 bg-emerald-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-500 focus:bg-emerald-500 active:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition ease-in-out duration-150">Tambahkan
+            Unit Kerja Baru</a>
 
-    td {
-      text-align: center;
-    }
-  </style>
-</head>
+          <table class="w-2/4 rounded-lg table-auto">
+            <thead class="bg-sky-800 text-white">
+              <tr>
+                <th class="py-2 px-2 rounded-tl-lg">#</th>
+                <th class="py-2 px-2">Nama Unit Kerja</th>
+                <th class="py-2 px-2">Status</th>
+                <th class="py-2 px-2 rounded-tr-lg">Operasi</th>
+              </tr>
+            </thead>
 
-<body>
-  <h1>Work Units</h1>
-  <a href="{{ route('work_units.create') }}">Tambah Unit Kerja Baru</a>
+            <tbody class="text-center bg-slate-200">
+              @foreach ($workUnits as $workUnit)
+                <tr class="border-b border-sky-800">
+                  <td class="border-r border-r-sky-800">{{ $loop->iteration }}</td>
+                  <td>{{ $workUnit->name }}</td>
+                  <td>{{ $workUnit->is_active ? 'Aktif' : 'Nonaktif' }}</td>
+                  <td class="py-2 border-l border-l-sky-800">
+                    <ul>
+                      <li>
+                        <a href="{{ route('work_units.edit', $workUnit->id) }}"
+                          class="inline-flex items-center justify-center w-32 mb-1.5 py-1.5 bg-amber-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-amber-400 focus:bg-amber-400 active:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 transition ease-in-out duration-150">Ubah</a>
+                      </li>
 
-  @if (session('message'))
-    <div class="message">
-      {{ session('message') }}
+                      <li>
+                        <form action="{{ route('work_units.destroy', $workUnit->id) }}" method="post">
+                          @csrf
+                          @method('DELETE')
+
+                          <button type="submit"
+                            class="inline-flex items-center justify-center w-32 py-1.5 {{ $workUnit->is_active ? 'bg-red-600' : 'bg-emerald-600' }} border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:{{ $workUnit->is_active ? 'bg-red-500' : 'bg-emerald-500' }} focus:{{ $workUnit->is_active ? 'bg-red-500' : 'bg-emerald-500' }} active:{{ $workUnit->is_active ? 'bg-red-700' : 'bg-emerald-700' }} focus:outline-none focus:ring-2 focus:{{ $workUnit->is_active ? 'ring-red-500' : 'ring-emerald-500' }} focus:ring-offset-2 transition ease-in-out duration-150"">{{ $workUnit->is_active ? 'Nonaktifkan' : 'Aktifkan' }}</button>
+                        </form>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+
+        </div>
+      </div>
     </div>
-  @endif
-
-  <table>
-    <tr>
-      <th>ID</th>
-      <th>Nama Unit Kerja</th>
-      <th>Status</th>
-      <th>Operasi</th>
-    </tr>
-
-    @foreach ($workUnits as $workUnit)
-      <tr>
-        <td>{{ $workUnit->id }}</td>
-        <td>{{ $workUnit->name }}</td>
-        <td>{{ $workUnit->is_active ? 'Aktif' : 'Nonaktif' }}</td>
-        <td>
-          <a href="{{ route('work_units.edit', $workUnit->id) }}">Ubah</a>
-          <form action="{{ route('work_units.destroy', $workUnit->id) }}" method="post">
-            @csrf
-            @method('DELETE')
-
-            <button type="submit">{{ $workUnit->is_active ? 'Nonaktifkan' : 'Aktifkan' }}</button>
-          </form>
-        </td>
-      </tr>
-    @endforeach
-  </table>
-</body>
-
-</html>
+  </div>
+</x-app-layout>
