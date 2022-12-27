@@ -17,7 +17,7 @@ class ItemController extends Controller {
   public function index() {
     $this->authorize('is-admin');
 
-    $items = Item::all();
+    $items = Item::paginate(5);
     return view('items.index', compact('items'));
   }
 
