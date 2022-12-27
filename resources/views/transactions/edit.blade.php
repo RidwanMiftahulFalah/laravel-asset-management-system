@@ -1,79 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout>
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      {{ __('Selesaikan Transaksi') }}
+    </h2>
+  </x-slot>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
+  <div class="py-5">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900">
 
-<body>
-  <form
-    action="{{ route('transactions.update', ['transaction' => $transaction->id, 'item_id' => $transaction->item_id]) }}"
-    method="post">
-    @csrf
-    @method('PUT')
+          <form
+            action="{{ route('transactions.update', ['transaction' => $transaction->id, 'item_id' => $transaction->item_id]) }}"
+            method="post">
+            @csrf
+            @method('PUT')
 
-    <table>
-      <tr>
-        <td><label for="checkout-date">Tanggal Transaksi : </label></td>
-        <td>
-          <div id="checkout-date">{{ $transaction->checkout_date }}</div>
-        </td>
-      </tr>
+            <div class="mb-3">
+              <label for="date" class="block font-medium text-sm text-gray-700">
+                Tanggal Transaksi
+              </label>
+              <input type="text" id="date" readonly value="{{ $transaction->date }}"
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+            </div>
 
-      <tr>
-        <td><label for="recipient-name">Nama Penerima : </label></td>
-        <td>
-          <div id="recipient-name">{{ $transaction->recipient_name }}</div>
-        </td>
-      </tr>
+            <div class="mb-3">
+              <label for="recipient-name" class="block font-medium text-sm text-gray-700">
+                Nama Penerima
+              </label>
+              <input type="text" id="recipient-name" readonly value="{{ $transaction->recipient_name }}"
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+            </div>
 
-      <tr>
-        <td><label for="room-name">Ruang Penempatan Aset : </label></td>
-        <td>
-          <div id="room-name">{{ $transaction->room->name }}</div>
-        </td>
-      </tr>
+            <div class="mb-3">
+              <label for="room-name" class="block font-medium text-sm text-gray-700">
+                Ruang Penempatan Aset
+              </label>
+              <input type="text" id="room-name" readonly value="{{ $transaction->room->name }}"
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+            </div>
 
-      <tr>
-        <td><label for="item-name">Nama Aset : </label></td>
-        <td>
-          <div id="item-name">{{ $transaction->item->name }}</div>
-        </td>
-      </tr>
+            <div class="mb-3">
+              <label for="item-name" class="block font-medium text-sm text-gray-700">
+                Nama Aset
+              </label>
+              <input type="text" id="item-name" readonly value="{{ $transaction->item->name }}"
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+            </div>
 
-      <tr>
-        <td><label for="quantity">Jumlah : </label></td>
-        <td>
-          <div id="quantity">{{ $transaction->quantity }}</div>
-        </td>
-      </tr>
+            <div class="mb-3">
+              <label for="quantity" class="block font-medium text-sm text-gray-700">
+                Jumlah
+              </label>
+              <input type="text" id="quantity" readonly value="{{ $transaction->quantity }}"
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+            </div>
 
-      <tr>
-        <td><label>Kondisi Aset : </label></td>
-        <td>
-          <input type="radio" name="condition" id="layak-pakai" value="Layak Pakai"
-            {{ $transaction->item->condition === 'Layak Pakai' ? 'checked' : '' }}>
-          <label for="layak-pakai">Layak Pakai</label>
+            <div class="mb-5">
+              <label class="block font-medium text-sm text-gray-700">Kondisi Aset</label>
 
-          <input type="radio" name="condition" id="rusak" value="Rusak"
-            {{ $transaction->item->condition === 'Rusak' ? 'checked' : '' }}>
-          <label for="rusak">Rusak</label>
+              <div class="flex">
+                <div class="flex items-center mr-4">
+                  <input id="layak-pakai" type="radio" value="Layak Pakai" name="condition" checked
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                  <label for="layak-pakai" class="ml-2 text-lg font-medium text-gray-900 dark:text-gray-300">
+                    Layak Pakai
+                  </label>
+                </div>
 
-          <input type="radio" name="condition" id="hilang" value="Hilang"
-            {{ $transaction->item->condition === 'Hilang' ? 'checked' : '' }}>
-          <label for="hilang">Hilang</label>
-        </td>
-      </tr>
+                <div class="flex items-center mr-4">
+                  <input id="rusak" type="radio" value="Rusak" name="condition"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                  <label for="rusak" class="ml-2 text-lg font-medium text-gray-900 dark:text-gray-300">
+                    Rusak
+                  </label>
+                </div>
 
-      <tr>
-        <td></td>
-        <td><button type="submit">Selesaikan Transaksi</button></td>
-      </tr>
-    </table>
-  </form>
-</body>
+                <div class="flex items-center mr-4">
+                  <input id="hilang" type="radio" value="Hilang" name="condition"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                  <label for="hilang" class="ml-2 text-lg font-medium text-gray-900 dark:text-gray-300">
+                    Hilang
+                  </label>
+                </div>
+              </div>
+            </div>
 
-</html>
+            <button type="submit"
+              class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+              Selesaikan Transaksi
+            </button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</x-app-layout>

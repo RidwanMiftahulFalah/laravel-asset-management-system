@@ -1,54 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout>
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      {{ __('Detail Transaksi') }}
+    </h2>
+  </x-slot>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
+  <div class="py-5">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900">
 
-<body>
-  <form action="{{ route('transactions.store') }}" method="post">
-    @csrf
+          <form action="{{ route('transactions.store') }}" method="post">
+            @csrf
 
-    <table>
-      <input type="hidden" name="item_id" value="{{ $item->id }}">
-      <tr>
-        <td><label for="recipient-name">Nama Penerima : </label></td>
-        <td><input type="text" name="recipient_name" id="recipient-name"></td>
-      </tr>
+            <input type="hidden" name="item_id" value="{{ $item->id }}">
 
-      <tr>
-        <td><label for="room-id">Ruangan : </label></td>
-        <td>
-          <select name="room_id" id="room-id">
-            @foreach ($rooms as $room)
-              <option value="{{ $room->id }}">{{ $room->name }}</option>
-            @endforeach
-          </select>
-        </td>
-      </tr>
+            <div class="mb-3">
+              <label for="recipient-name" class="block font-medium text-sm text-gray-700">
+                Nama Penerima
+              </label>
+              <input type="text" name="recipient_name" id="recipient-name"
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+            </div>
 
-      <tr>
-        <td><label for="asset-name">Nama Aset : </label></td>
-        <td>
-          <div id="asset-name">{{ $item->name }}</div>
-        </td>
-      </tr>
+            <div class="mb-3">
+              <label for="asset-name" class="block font-medium text-sm text-gray-700">
+                Nama Aset
+              </label>
+              <input type="text" name="name" id="name" readonly
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                value="{{ $item->name }}">
+            </div>
 
-      <tr>
-        <td><label for="quantity">Jumlah : </label></td>
-        <td><input type="number" name="quantity" id="quantity" value="{{ !$item->is_disposable ? '1' : '' }}"
-            {{ !$item->is_disposable ? 'readonly' : '' }}></td>
-      </tr>
+            <div class="mb-3">
+              <label for="quantity" class="block font-medium text-sm text-gray-700">
+                Jumlah
+              </label>
+              <input type="number" name="quantity" id="quantity" value="{{ !$item->is_disposable ? '1' : '' }}"
+                {{ !$item->is_disposable ? 'readonly' : '' }}
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+            </div>
 
-      <tr>
-        <td></td>
-        <td><button type="submit">Checkout</button></td>
-      </tr>
-    </table>
-  </form>
-</body>
+            <div class="mb-5">
+              <label for="room-id" class="block font-medium text-sm text-gray-700">
+                Ruangan
+              </label>
+              <select name="room_id" id="room-id"
+                class="block w-48 p-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                @foreach ($rooms as $room)
+                  <option value="{{ $room->id }}">{{ $room->name }}</option>
+                @endforeach
+              </select>
+            </div>
 
-</html>
+            <button type="submit"
+              class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+              Checkout
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</x-app-layout>
