@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller {
@@ -14,7 +16,16 @@ class DashboardController extends Controller {
   public function index() {
     $transactions = Transaction::orderBy('id', 'desc')->paginate(10);
 
-    return view('dashboard', compact('transactions'));
+    $totalTransactions = $transactions->count();
+    $totalItems = Item::count();
+    $totalUsers = User::count();
+
+    return view('dashboard', [
+      'transactions' => $transactions,
+      'totalTransactions' => $totalTransactions,
+      'totalItems' => $totalItems,
+      'totalUsers' => $totalUsers
+    ]);
   }
 
   /**

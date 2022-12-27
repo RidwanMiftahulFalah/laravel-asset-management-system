@@ -11,9 +11,17 @@
         <div class="p-6 text-gray-900">
 
           <div class="h-40 max-w-screen mb-5 flex flex-wrap justify-between">
-            <div class="bg-blue-300 rounded-2xl w-96 h-40"></div>
-            <div class="bg-blue-300 rounded-2xl w-96 h-40"></div>
-            <div class="bg-blue-300 rounded-2xl w-96 h-40"></div>
+            <div class="bg-blue-300 rounded-2xl w-96 h-40">
+              {{ $totalTransactions }}
+            </div>
+
+            <div class="bg-blue-300 rounded-2xl w-96 h-40">
+              {{ $totalItems }}
+            </div>
+
+            <div class="bg-blue-300 rounded-2xl w-96 h-40">
+              {{ $totalUsers }}
+            </div>
           </div>
 
           <div class="max-w-screen overflow-x-auto">
