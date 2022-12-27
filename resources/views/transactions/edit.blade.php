@@ -57,7 +57,9 @@
             </div>
 
             <div class="mb-5">
-              <label class="block font-medium text-sm text-gray-700">Kondisi Aset</label>
+              <label class="block font-medium text-sm text-gray-700">
+                Kondisi Aset
+              </label>
 
               <div class="flex">
                 <div class="flex items-center mr-4">

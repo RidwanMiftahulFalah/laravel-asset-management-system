@@ -47,12 +47,23 @@ class ItemController extends Controller {
       'name' => 'required',
       'is_disposable' => 'required',
       'stock' => 'required',
-      'description' => 'required',
+      'condition' => 'required',
+      'usage_permission' => 'required',
       'category_id' => 'required',
       'work_unit_id' => 'required'
     ]);
 
-    Item::create($request->all());
+    Item::create([
+      'name' => $request->name,
+      'is_disposable' => $request->is_disposable,
+      'stock' => $request->stock,
+      'description' => $request->description,
+      'condition' => $request->condition,
+      'usage_permission' => $request->usage_permission,
+      'is_active' => true,
+      'category_id' => $request->category_id,
+      'work_unit_id' => $request->work_unit_id
+    ]);
     return redirect()->route('items.index')->with('message', 'Data Aset baru berhasil ditambahkan.');
   }
 

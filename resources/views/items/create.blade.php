@@ -1,108 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout>
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      {{ __('Tambah Aset Baru') }}
+    </h2>
+  </x-slot>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
+  <div class="py-5">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900">
 
-<body>
-  <h1>Tambah Data Aset</h1>
+          <form action="{{ route('items.store') }}" method="post">
+            @csrf
 
-  <form action="{{ route('items.store') }}" method="post">
-    @csrf
+            <div class="mb-3">
+              <label for="name" class="block font-medium text-sm text-gray-700">
+                Nama Aset
+              </label>
+              <input type="text" name="name" id="name"
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+            </div>
 
-    <table>
-      <tr>
-        <td><label for="name">Nama Aset : </label></td>
-        <td><input type="text" name="name" id="name"></td>
-      </tr>
+            <div class="mb-3">
+              <label class="block font-medium text-sm text-gray-700">
+                Habis Pakai
+              </label>
 
-      <tr>
-        <td><label>Habis Pakai</label></td>
-        <td>
-          <input type="radio" name="is_disposable" class="disposable" id="ya" value="1">
-          <label for="ya">Ya</label>
+              <div class="flex">
+                <div class="flex items-center mr-4">
+                  <input id="ya" type="radio" value="1" name="is_disposable"
+                    class="disposable w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                  <label for="ya" class="ml-2 text-md font-medium text-gray-900">
+                    Ya
+                  </label>
+                </div>
 
-          <input type="radio" name="is_disposable" class="disposable" id="tidak" value="0">
-          <label for="tidak">Tidak</label>
-        </td>
-      </tr>
+                <div class="flex items-center mr-4">
+                  <input id="tidak" type="radio" value="0" name="is_disposable"
+                    class="disposable w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                  <label for="tidak" class="ml-2 text-md font-medium text-gray-900">
+                    Tidak
+                  </label>
+                </div>
+              </div>
+            </div>
 
-      <tr>
-        <td><label for="stock">Stok : </label></td>
-        <td><input type="number" name="stock" id="stock"></td>
-      </tr>
+            <div class="mb-3">
+              <label for="stock" class="block font-medium text-sm text-gray-700">
+                Stok
+              </label>
+              <input type="number" name="stock" id="stock"
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+            </div>
 
-      <tr>
-        <td><label for="description">Deskripsi : </label></td>
-        <td>
-          <textarea name="description" id="description" cols="30" rows="10"></textarea>
-        </td>
-      </tr>
+            <div class="mb-3">
+              <label for="description" class="block font-medium text-sm text-gray-700">
+                Deskripsi
+              </label>
+              <textarea name="description" id="description" cols="30" rows="5"
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"></textarea>
+            </div>
 
-      <tr>
-        <td><label for="hak-pakai">Hak Pakai : </label></td>
-        <td>
-          <input type="radio" name="usage_permission" id="guru" value="Guru">
-          <label for="guru">Guru</label>
+            <div class="mb-3">
+              <label for="hak-pakai" class="block font-medium text-sm text-gray-700">
+                Hak Pakai
+              </label>
 
-          <input type="radio" name="usage_permission" id="siswa" value="Siswa">
-          <label for="siswa">Siswa</label>
+              <div class="flex">
+                <div class="flex items-center mr-4">
+                  <input id="guru" type="radio" value="Guru" name="usage_permission"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                  <label for="guru" class="ml-2 text-md font-medium text-gray-900">
+                    Guru
+                  </label>
+                </div>
 
-          <input type="radio" name="usage_permission" id="guru-siswa" value="Guru & Siswa">
-          <label for="guru-siswa">Guru & Siswa</label>
-        </td>
-      </tr>
+                <div class="flex items-center mr-4">
+                  <input id="siswa" type="radio" value="Siswa" name="usage_permission"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                  <label for="siswa" class="ml-2 text-md font-medium text-gray-900">
+                    Siswa
+                  </label>
+                </div>
 
-      <tr id="condition-option">
-        <td><label>Kondisi : </label></td>
-        <td>
-          <input type="radio" name="condition" id="layak-pakai" value="Layak Pakai">
-          <label for="layak-pakai">Layak Pakai</label>
+                <div class="flex items-center mr-4">
+                  <input id="guru-siswa" type="radio" value="Guru & Siswa" name="usage_permission"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                  <label for="guru-siswa" class="ml-2 text-md font-medium text-gray-900">
+                    Guru & Siswa
+                  </label>
+                </div>
+              </div>
+            </div>
 
-          <input type="radio" name="condition" id="rusak" value="Rusak">
-          <label for="rusak">Rusak</label>
+            <div id="condition-option" class="mb-3">
+              <label class="block font-medium text-sm text-gray-700">
+                Kondisi
+              </label>
 
-          <input type="radio" name="condition" id="hilang" value="Hilang">
-          <label for="hilang">Hilang</label>
-        </td>
-      </tr>
+              <div class="flex">
+                <div class="flex items-center mr-4">
+                  <input id="layak-pakai" type="radio" value="Layak Pakai" name="condition" checked
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                  <label for="layak-pakai" class="ml-2 text-md font-medium text-gray-900">
+                    Layak Pakai
+                  </label>
+                </div>
 
-      <input type="hidden" name="is_active" value="1">
+                <div class="flex items-center mr-4">
+                  <input id="rusak" type="radio" value="Rusak" name="condition"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                  <label for="rusak" class="ml-2 text-md font-medium text-gray-900">
+                    Rusak
+                  </label>
+                </div>
 
-      <tr>
-        <td><label for="category">Kategori</label></td>
-        <td>
-          <select name="category_id" id="category">
-            @foreach ($categories as $categories)
-              <option value="{{ $categories->id }}">{{ $categories->name }}</option>
-            @endforeach
-          </select>
-        </td>
-      </tr>
+                <div class="flex items-center mr-4">
+                  <input id="hilang" type="radio" value="Hilang" name="condition"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                  <label for="hilang" class="ml-2 text-md font-medium text-gray-900">
+                    Hilang
+                  </label>
+                </div>
+              </div>
+            </div>
 
-      <tr>
-        <td><label for="work-unit">Unit Kerja</label></td>
-        <td>
-          <select name="work_unit_id" id="work-unit">
-            @foreach ($workUnits as $workUnit)
-              <option value="{{ $workUnit->id }}">{{ $workUnit->name }}</option>
-            @endforeach
-          </select>
-        </td>
-      </tr>
+            <div class="mb-3">
+              <label for="category" class="block font-medium text-sm text-gray-700">
+                Kategori
+              </label>
 
-      <tr>
-        <td></td>
-        <td><button type="submit">Simpan</button></td>
-      </tr>
-    </table>
-  </form>
+              <select name="category_id" id="category"
+                class="block w-60 p-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                @foreach ($categories as $categories)
+                  <option value="{{ $categories->id }}">
+                    {{ $categories->name }}
+                  </option>
+                @endforeach
+              </select>
+            </div>
 
-  <script src="{{ asset('js/items/validation.js') }}"></script>
-</body>
+            <div class="mb-5">
+              <label for="work-unit" class="block font-medium text-sm text-gray-700">
+                Unit Kerja
+              </label>
 
-</html>
+              <select name="work_unit_id" id="work-unit"
+                class="block w-60 p-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                @foreach ($workUnits as $workUnit)
+                  <option value="{{ $workUnit->id }}">
+                    {{ $workUnit->name }}
+                  </option>
+                @endforeach
+              </select>
+            </div>
+
+            <button type="submit"
+              class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+              Simpan Data
+            </button>
+          </form>
+
+          <script src="{{ asset('js/items/validation.js') }}"></script>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</x-app-layout>
