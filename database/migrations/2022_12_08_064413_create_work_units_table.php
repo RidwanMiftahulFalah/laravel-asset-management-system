@@ -13,8 +13,8 @@ return new class extends Migration {
   public function up() {
     Schema::create('work_units', function (Blueprint $table) {
       $table->id();
-      $table->string('name', '75');
-      $table->boolean('is_active');
+      $table->string('name');
+      $table->boolean('is_active')->default(true);
       $table->timestamps();
     });
   }

@@ -1,23 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<x-app-layout>
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      {{ __('Tambah Unit Kerja Baru') }}
+    </h2>
+  </x-slot>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
+  <div class="py-5">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900">
 
-<body>
-  <form action="{{ route('work_units.store') }}" method="post">
-    @csrf
+          <form action="{{ route('work_units.store') }}" method="post">
+            @csrf
 
-    <input type="text" name="name" id="name">
+            <div class="mb-3">
+              <label for="name" class="block font-medium text-sm text-gray-700">
+                Nama Unit Kerja
+              </label>
+              <input type="text" name="name" id="name" placeholder=""
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+            </div>
 
-    <input type="hidden" name="is_active" value="1">
+            <button type="submit"
+              class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+              Simpan
+            </button>
+          </form>
 
-    <button type="submit">Simpan</button>
-  </form>
-</body>
-
-</html>
+        </div>
+      </div>
+    </div>
+  </div>
+</x-app-layout>
