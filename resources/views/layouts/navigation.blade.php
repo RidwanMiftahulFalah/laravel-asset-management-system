@@ -32,6 +32,10 @@
             <x-nav-link :href="route('work_units.index')" :active="request()->routeIs('work_units.*')">
               {{ __('Unit Kerja') }}
             </x-nav-link>
+
+            <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+              {{ __('User') }}
+            </x-nav-link>
           @endcan
         </div>
       </div>
@@ -109,6 +113,10 @@
 
       <x-responsive-nav-link :href="route('work_units.index')" :active="request()->routeIs('work_units.*')">
         {{ __('Unit Kerja') }}
+      </x-responsive-nav-link>
+
+      <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+        {{ __('User') }}
       </x-responsive-nav-link>
     </div>
 

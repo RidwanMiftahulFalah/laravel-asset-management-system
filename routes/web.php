@@ -6,6 +6,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\WorkUnitController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,13 +35,15 @@ Route::middleware('auth')->group(function () {
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+  Route::resource('users', UserController::class);
+
   Route::resource('categories', CategoryController::class)->except(['show']);
 
   Route::resource('work_units', WorkUnitController::class)->except(['show']);
 
-  Route::resource('items', ItemController::class);
-
   Route::resource('rooms', RoomController::class);
+  
+  Route::resource('items', ItemController::class);
 
   Route::get('/transactions/history', [TransactionController::class, 'history'])->name('transactions.history');
   Route::resource('transactions', TransactionController::class)->except(['show', 'destroy']);
