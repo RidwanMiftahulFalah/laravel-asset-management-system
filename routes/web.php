@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::fallback(fn () => abort(404));
+
 Route::get('/', function () {
   return view('auth.login');
 });
@@ -32,17 +34,16 @@ Route::middleware('auth')->group(function () {
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-  Route::resource('categories', CategoryController::class);
+  Route::resource('categories', CategoryController::class)->except(['show']);
 
-  Route::resource('work_units', WorkUnitController::class);
+  Route::resource('work_units', WorkUnitController::class)->except(['show']);
 
   Route::resource('items', ItemController::class);
 
   Route::resource('rooms', RoomController::class);
 
   Route::get('/transactions/history', [TransactionController::class, 'history'])->name('transactions.history');
-  Route::resource('transactions', TransactionController::class);
+  Route::resource('transactions', TransactionController::class)->except(['show', 'destroy']);
 });
-
 
 require __DIR__ . '/auth.php';
