@@ -37,7 +37,7 @@
 
             <tbody class="text-center bg-slate-200">
               @foreach ($transactions as $transaction)
-                <tr class="border border-sky-800">
+                <tr class="border-b border-sky-800">
                   <td class="py-3 px-3 border-r border-r-sky-800">{{ $loop->iteration }}</td>
                   <td>{{ $transaction->date }}</td>
                   <td>{{ $transaction->recipient_name }}</td>

@@ -34,7 +34,7 @@
 
             <tbody class="text-center bg-slate-200">
               @foreach ($items as $item)
-                <tr class="border border-sky-800">
+                <tr class="border-b border-sky-800">
                   <td class="py-3 px-2 border-r border-r-sky-800">{{ $loop->iteration }}</td>
                   <td class="py-3 px-2">{{ $item->name }}</td>
                   <td class="py-3 px-2">{{ $item->stock }}</td>
