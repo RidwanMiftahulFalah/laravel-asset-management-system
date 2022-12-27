@@ -18,7 +18,7 @@
           @endif
 
           <a href="{{ route('items.create') }}"
-            class="inline-flex items-center mb-3 px-4 py-2 bg-emerald-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-500 focus:bg-emerald-500 active:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+            class="inline-flex items-center mb-3 px-4 py-2 bg-emerald-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-500 focus:bg-emerald-500 active:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition ease-in-out duration-150">
             Tambah Data Aset
           </a>
 
@@ -34,14 +34,14 @@
                 <th class="py-2 px-2">Unit Kerja</th>
                 <th class="py-2 px-2">Hak Pakai</th>
                 <th class="py-2 px-2">Status</th>
-                <th class="py-2 px-2 rounded-tr-lg">Operasi</th>
+                <th class="py-2 px-2 rounded-tr-lg">Opsi</th>
               </tr>
             </thead>
 
             <tbody class="text-center bg-slate-200">
               @foreach ($items as $item)
-                <tr class="">
-                  <td>{{ $loop->iteration }}</td>
+                <tr class="border border-sky-800">
+                  <td class="border-r border-r-sky-800">{{ $loop->iteration }}</td>
                   <td>{{ $item->name }}</td>
                   <td>{{ $item->is_disposable ? 'Habis Pakai' : 'Tidak Habis Pakai' }}</td>
                   <td>{{ $item->stock }}</td>
@@ -50,7 +50,7 @@
                   <td>{{ $item->workUnit->name }}</td>
                   <td>{{ $item->usage_permission }}</td>
                   <td>{{ $item->is_active ? 'Aktif' : 'Nonaktif' }}</td>
-                  <td class="py-2 px-3">
+                  <td class="py-2 px-3 border-l border-l-sky-800">
                     <ul>
                       <li>
                         <a href="{{ route('items.show', $item->id) }}"
