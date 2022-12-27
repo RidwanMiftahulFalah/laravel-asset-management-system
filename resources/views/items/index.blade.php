@@ -22,7 +22,7 @@
             Tambah Data Aset
           </a>
 
-          <table class="w-full rounded-lg  border-sky-800  table-auto">
+          <table class="w-full rounded-lg table-auto">
             <thead class="bg-sky-800 text-white">
               <tr>
                 <th class="py-2 px-3 rounded-tl-lg">#</th>
@@ -40,8 +40,8 @@
 
             <tbody class="text-center bg-slate-200">
               @foreach ($items as $item)
-                <tr class="border border-sky-800">
-                  <td class="border-r border-r-sky-800">{{ $loop->iteration }}</td>
+                <tr class="border-b border-sky-800">
+                  <td class="box-border border-x border-r-sky-800">{{ $loop->iteration }}</td>
                   <td>{{ $item->name }}</td>
                   <td>{{ $item->is_disposable ? 'Habis Pakai' : 'Tidak Habis Pakai' }}</td>
                   <td>{{ $item->stock }}</td>
@@ -59,7 +59,7 @@
 
                       <li>
                         <a href="{{ route('items.edit', $item->id) }}"
-                          class="inline-flex items-center justify-center w-32 my-1 py-1.5 bg-amber-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-amber-400 focus:bg-amber-400 active:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 transition ease-in-out duration-150">Ubah</a>
+                          class="inline-flex items-center justify-center w-32 my-1.5 py-1.5 bg-amber-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-amber-400 focus:bg-amber-400 active:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 transition ease-in-out duration-150">Ubah</a>
                       </li>
 
                       <li>
@@ -68,7 +68,7 @@
                           @method('DELETE')
 
                           <button type="submit"
-                            class="inline-flex items-center justify-center mb-3 w-32 py-1.5 {{ $item->is_active ? 'bg-red-600' : 'bg-emerald-600' }} border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:{{ $item->is_active ? 'bg-red-500' : 'bg-emerald-500' }} focus:{{ $item->is_active ? 'bg-red-500' : 'bg-emerald-500' }} active:{{ $item->is_active ? 'bg-red-700' : 'bg-emerald-700' }} focus:outline-none focus:ring-2 focus:{{ $item->is_active ? 'ring-red-500' : 'ring-emerald-500' }} focus:ring-offset-2 transition ease-in-out duration-150">{{ $item->is_active ? 'Nonaktifkan' : 'Aktifkan' }}</button>
+                            class="inline-flex items-center justify-center w-32 py-1.5 {{ $item->is_active ? 'bg-red-600' : 'bg-emerald-600' }} border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:{{ $item->is_active ? 'bg-red-500' : 'bg-emerald-500' }} focus:{{ $item->is_active ? 'bg-red-500' : 'bg-emerald-500' }} active:{{ $item->is_active ? 'bg-red-700' : 'bg-emerald-700' }} focus:outline-none focus:ring-2 focus:{{ $item->is_active ? 'ring-red-500' : 'ring-emerald-500' }} focus:ring-offset-2 transition ease-in-out duration-150">{{ $item->is_active ? 'Nonaktifkan' : 'Aktifkan' }}</button>
                       </li>
                       </form>
 
