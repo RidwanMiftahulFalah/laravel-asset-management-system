@@ -39,18 +39,25 @@
               @foreach ($transactions as $transaction)
                 <tr class="border-b border-sky-800">
                   <td class="py-3 px-3 border-r border-r-sky-800">{{ $loop->iteration }}</td>
+
                   <td>{{ $transaction->date }}</td>
+
                   <td>{{ $transaction->recipient_name }}</td>
+
                   <td>{{ $transaction->item->name }}</td>
+
                   <td>{{ $transaction->quantity }}</td>
+
                   <td>{{ $transaction->room->name }}</td>
+
                   <td class="py-3 px-2 flex justify-center">
                     <div
                       class="py-1 w-20 text-sm text-white font-bold rounded-full {{ $transaction->status === 'Pending' ? 'bg-amber-500' : 'bg-emerald-700' }}">
                       {{ $transaction->status }}
                     </div>
                   </td>
-                  <td class="py-3 px-2  border-l border-l-sky-800">
+
+                  <td class="py-3 px-2 border-l border-l-sky-800">
                     @if ($transaction->status == 'Pending')
                       <a href="{{ route('transactions.edit', $transaction->id) }}"
                         class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
@@ -58,8 +65,9 @@
                       </a>
                     @else
                       <div
-                        class="inline-block px-6 py-2.5 bg-slate-400 text-slate-200 font-bold text-xs leading-tight uppercase rounded shadow-md">
-                        Selesaikan Transaksi</div>
+                        class="inline-flex items-center px-4 py-2 bg-slate-400 border border-transparent rounded-md font-semibold text-xs text-slate-200 uppercase tracking-widest ">
+                        Selesaikan Transaksi
+                      </div>
                     @endif
                   </td>
                 </tr>

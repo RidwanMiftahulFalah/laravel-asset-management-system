@@ -27,7 +27,7 @@
                 <th class="py-2 px-2 rounded-tl-lg">#</th>
                 <th class="py-2 px-2">Nama</th>
                 <th class="py-2 px-2">Status</th>
-                <th class="py-2 px-2 rounded-tr-lg">Aksi</th>
+                <th class="py-2 px-2 rounded-tr-lg">Opsi</th>
               </tr>
             </thead>
 
@@ -35,8 +35,11 @@
               @foreach ($categories as $category)
                 <tr class="border-b border-sky-800">
                   <td class="border-r border-r-sky-800">{{ $loop->iteration }}</td>
+
                   <td>{{ $category->name }}</td>
+
                   <td>{{ $category->is_active ? 'Aktif' : 'Nonaktif' }}</td>
+                  
                   <td class="py-2 border-l border-l-sky-800">
                     <ul>
                       <li>
