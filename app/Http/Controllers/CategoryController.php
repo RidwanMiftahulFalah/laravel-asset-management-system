@@ -44,7 +44,10 @@ class CategoryController extends Controller {
       'name' => 'required'
     ]);
 
-    Category::create($request->all());
+    Category::create([
+      'name' => $request->name,
+      'is_active' => 1
+    ]);
     return redirect()->route('categories.index')->with('message', 'Data Kategori baru berhasil ditambahkan.');
   }
 
