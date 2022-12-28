@@ -67,9 +67,9 @@
               <tbody class="text-center bg-slate-200">
                 @if ($items->count())
                   @foreach ($items as $item)
-                    <tr class="{{ !$loop->iteration === $items->count() ? 'border-b border-sky-800' : '' }}">
+                    <tr class="{{ $loop->iteration != $items->count() ? 'border-b border-sky-800' : '' }}">
                       <td
-                        class="py-3 px-2 border-r border-r-sky-800 {{ $loop->iteration === $items->count() ? 'rounded-bl-lg' : '' }}">
+                        class="py-3 px-2 border-r border-r-sky-800 {{ $loop->iteration == $items->count() ? 'rounded-bl-lg' : '' }}">
                         {{ $loop->iteration }}
                       </td>
 

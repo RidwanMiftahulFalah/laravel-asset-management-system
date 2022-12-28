@@ -46,8 +46,8 @@
               <tbody class="text-center bg-slate-200">
                 @if ($transactions->count())
                   @foreach ($transactions as $transaction)
-                    <tr class="{{ !$loop->iteration === $transactions->count() ? 'border-b border-sky-800' : '' }}">
-                      <td class="py-3 px-3 border-r border-r-sky-800 {{ $loop->iteration === $transactions->count() ? 'rounded-bl-lg' : '' }}">
+                    <tr class="{{ $loop->iteration != $transactions->count() ? 'border-b border-sky-800' : '' }}">
+                      <td class="py-3 px-3 border-r border-r-sky-800 {{ $loop->iteration == $transactions->count() ? 'rounded-bl-lg' : '' }}">
                         {{ $loop->iteration }}
                       </td>
 

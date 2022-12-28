@@ -62,9 +62,9 @@
               <tbody class="text-center bg-slate-200">
                 @if ($categories->count())
                   @foreach ($categories as $category)
-                    <tr class="{{ !$loop->iteration === $categories->count() ? 'border-b border-sky-800' : '' }}">
+                    <tr class="{{ $loop->iteration != $categories->count() ? 'border-b border-sky-800' : '' }}">
                       <td
-                        class="border-r border-r-sky-800 {{ $loop->iteration === $categories->count() ? 'rounded-bl-lg' : '' }}">
+                        class="border-r border-r-sky-800 {{ $loop->iteration == $categories->count() ? 'rounded-bl-lg' : '' }}">
                         {{ $loop->iteration }}</td>
 
                       <td>{{ $category->name }}</td>
