@@ -19,6 +19,15 @@
         <div class="p-6 text-gray-900">
 
           <div class="mb-3">
+            <label class="block font-medium text-sm text-gray-700">
+              QR Code
+            </label>
+            <div class="mb-3">
+              {!! DNS2D::getBarcodeHTML('4445645656', 'QRCODE') !!}
+            </div>
+          </div>
+
+          <div class="mb-3">
             <label for="name" class="block font-medium text-sm text-gray-700">
               Nama Aset
             </label>
