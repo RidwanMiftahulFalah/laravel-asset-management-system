@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreWorkUnitRequest;
 use App\Http\Requests\UpdateWorkUnitRequest;
 use App\Models\WorkUnit;
+use Illuminate\Http\Request;
 
 class WorkUnitController extends Controller {
   /**
@@ -12,10 +13,15 @@ class WorkUnitController extends Controller {
    *
    * @return \Illuminate\Http\Response
    */
-  public function index() {
+  public function index(Request $request) {
     $this->authorize('is-admin');
 
-    $workUnits = WorkUnit::paginate(5);
+    if ($request->search) {
+      $workUnits = WorkUnit::where('name', 'like', '%' . $request->search . '%')->paginate(5);
+    } else {
+      $workUnits = WorkUnit::paginate(5);
+    }
+
     return view('work_units.index', compact('workUnits'));
   }
 
