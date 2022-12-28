@@ -36,7 +36,19 @@ class TransactionController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function create(Request $request) {
-    $item = Item::find($request->id);
+    $item = Item::find($request->item_id);
+
+    if ($item->stock < 1) {
+      return redirect()->route('transactions.index')->with('error', 'Stok Aset kosong.');
+    }
+
+    if ($item->is_active == false) {
+      return redirect()->route('transactions.index')->with('error', 'Aset berstatus nonaktif, silakan aktifkan terlebih dahulu.');
+    }
+
+    if ($item->condition !== 'Layak Pakai') {
+      return redirect()->route('transactions.index')->with('error', 'Kondisi Aset tidak layak pakai (Rusak / Hilang), silakan perbarui data kondisi aset terlebih dahulu.');
+    }
 
     return view('transactions.create', compact(['item']));
   }
@@ -51,7 +63,6 @@ class TransactionController extends Controller {
     $request->validate([
       'recipient_name' => 'required',
       'quantity' => 'required',
-      'item_id' => 'required',
       'placement_location' => 'required'
     ]);
 

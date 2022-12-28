@@ -23,7 +23,7 @@
               QR Code
             </label>
             <div class="mb-3">
-              {!! DNS2D::getBarcodeHTML('4445645656', 'QRCODE') !!}
+              {!! DNS2D::getBarcodeHTML($item->id, 'QRCODE') !!}
             </div>
           </div>
 
