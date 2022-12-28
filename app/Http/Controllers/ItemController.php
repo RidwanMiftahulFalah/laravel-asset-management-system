@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateItemRequest;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\WorkUnit;
+use Illuminate\Http\Request;
 
 class ItemController extends Controller {
   /**
@@ -14,10 +15,14 @@ class ItemController extends Controller {
    *
    * @return \Illuminate\Http\Response
    */
-  public function index() {
+  public function index(Request $request) {
     $this->authorize('is-admin');
 
-    $items = Item::paginate(5);
+    if ($request->search) {
+      $items = Item::where('name', 'like', '%' . $request->search . '%')->paginate(5);
+    } else {
+      $items = Item::paginate(5);
+    }
     return view('items.index', compact('items'));
   }
 
