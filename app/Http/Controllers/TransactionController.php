@@ -17,8 +17,12 @@ class TransactionController extends Controller {
    *
    * @return \Illuminate\Http\Response
    */
-  public function index() {
-    $items = Item::where('is_active', '=', 1)->where('condition', '=', 'Layak Pakai')->where('stock', '>=', 1)->paginate(10);
+  public function index(Request $request) {
+    if ($request->search) {
+      $items = Item::where('name', 'like', '%' . $request->search . '%')->where('is_active', '=', 1)->where('condition', '=', 'Layak Pakai')->where('stock', '>=', 1)->paginate(10);
+    } else {
+      $items = Item::where('is_active', '=', 1)->where('condition', '=', 'Layak Pakai')->where('stock', '>=', 1)->paginate(10);
+    }
     return view('transactions.index', compact('items'));
   }
 
