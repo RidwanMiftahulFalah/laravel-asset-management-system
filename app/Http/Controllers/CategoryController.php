@@ -16,7 +16,7 @@ class CategoryController extends Controller {
   public function index(Request $request) {
     $this->authorize('is-admin');
 
-    if($request->search) {
+    if ($request->search) {
       $categories = Category::where('name', 'like', '%' . $request->search . '%')->paginate(5);
     } else {
       $categories = Category::paginate(5);
@@ -51,10 +51,7 @@ class CategoryController extends Controller {
       'name' => 'required'
     ]);
 
-    Category::create([
-      'name' => $request->name,
-      'is_active' => 1
-    ]);
+    Category::create($request->all());
     return redirect()->route('categories.index')->with('message', 'Data Kategori baru berhasil ditambahkan.');
   }
 

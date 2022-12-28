@@ -58,17 +58,7 @@ class ItemController extends Controller {
       'work_unit_id' => 'required'
     ]);
 
-    Item::create([
-      'name' => $request->name,
-      'is_disposable' => $request->is_disposable,
-      'stock' => $request->stock,
-      'description' => $request->description,
-      'condition' => $request->condition,
-      'usage_permission' => $request->usage_permission,
-      'is_active' => true,
-      'category_id' => $request->category_id,
-      'work_unit_id' => $request->work_unit_id
-    ]);
+    Item::create($request->all());
     return redirect()->route('items.index')->with('message', 'Data Aset baru berhasil ditambahkan.');
   }
 
@@ -108,12 +98,22 @@ class ItemController extends Controller {
    */
   public function update(UpdateItemRequest $request, Item $item) {
     $this->authorize('is-admin');
+    $request->validate([
+      'name' => 'required',
+      'is_disposable' => 'required',
+      'stock' => 'required',
+      'condition' => 'required',
+      'usage_permission' => 'required',
+      'category_id' => 'required',
+      'work_unit_id' => 'required'
+    ]);
 
     $request->validate([
       'name' => 'required',
       'is_disposable' => 'required',
       'stock' => 'required',
-      'description' => 'required',
+      'condition' => 'required',
+      'usage_permission' => 'required',
       'category_id' => 'required',
       'work_unit_id' => 'required'
     ]);

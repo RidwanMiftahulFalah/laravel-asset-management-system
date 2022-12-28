@@ -49,10 +49,7 @@ class WorkUnitController extends Controller {
       'name' => 'required'
     ]);
 
-    WorkUnit::create([
-      'name' => $request->name,
-      'is_active' => 1
-    ]);
+    WorkUnit::create($request->all());
     return redirect()->route('work_units.index')->with('message', 'Data Unit Kerja baru berhasil ditambahkan.');
   }
 
