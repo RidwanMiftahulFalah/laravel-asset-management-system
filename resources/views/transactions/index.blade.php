@@ -67,8 +67,11 @@
               <tbody class="text-center bg-slate-200">
                 @if ($items->count())
                   @foreach ($items as $item)
-                    <tr class="border-b border-sky-800">
-                      <td class="py-3 px-2 border-r border-r-sky-800">{{ $loop->iteration }}</td>
+                    <tr class="{{ !$loop->iteration === $items->count() ? 'border-b border-sky-800' : '' }}">
+                      <td
+                        class="py-3 px-2 border-r border-r-sky-800 {{ $loop->iteration === $items->count() ? 'rounded-bl-lg' : '' }}">
+                        {{ $loop->iteration }}
+                      </td>
 
                       <td class="py-3 px-2">{{ $item->name }}</td>
 
@@ -84,7 +87,8 @@
 
                       <td class="py-3 px-2">{{ $item->is_active ? 'Aktif' : 'Nonaktif' }}</td>
 
-                      <td class="py-3 px-2  border-l border-l-sky-800">
+                      <td
+                        class="py-3 px-2  border-l border-l-sky-800 {{ $loop->iteration === $items->count() ? 'rounded-br-lg' : '' }}">
                         <a href="{{ route('transactions.create', ['id' => $item->id]) }}"
                           class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:bg-blue-500 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">Pilih</a>
                       </td>
