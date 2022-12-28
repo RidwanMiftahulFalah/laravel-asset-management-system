@@ -12,16 +12,17 @@ return new class extends Migration {
    */
   public function up() {
     Schema::create('items', function (Blueprint $table) {
-      $table->id();
-      $table->string('name');
+      $table->uuid('id')->primary();
+      // $table->string('qr_code', '25')->unique();
+      $table->string('name', 100);
       $table->boolean('is_disposable');
       $table->integer('stock', false);
       $table->text('description')->nullable();
-      $table->string('condition');
-      $table->string('usage_permission');
+      $table->string('condition', 20);
+      $table->string('usage_permission', 20);
       $table->boolean('is_active')->default(true);
-      $table->foreignId('category_id')->constrained('categories', 'id');
-      $table->foreignId('work_unit_id')->constrained('work_units', 'id');
+      $table->foreignUuid('category_id')->constrained();
+      $table->foreignUuid('work_unit_id')->constrained();
       $table->timestamps();
     });
   }

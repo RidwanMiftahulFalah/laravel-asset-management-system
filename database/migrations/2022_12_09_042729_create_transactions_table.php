@@ -12,14 +12,14 @@ return new class extends Migration {
    */
   public function up() {
     Schema::create('transactions', function (Blueprint $table) {
-      $table->id();
+      $table->uuid('id')->primary();
       $table->string('recipient_name', '75');
       $table->integer('quantity', false);
       $table->string('placement_location');
       $table->date('date');
       $table->string('status', 15);
-      $table->foreignId('user_id')->constrained('users', 'id');
-      $table->foreignId('item_id')->constrained('items', 'id');
+      $table->foreignUuid('user_id')->constrained();
+      $table->foreignUuid('item_id')->constrained();
     });
   }
 

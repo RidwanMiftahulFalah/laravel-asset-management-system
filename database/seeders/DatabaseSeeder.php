@@ -11,7 +11,9 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Models\WorkUnit;
 use Carbon\Carbon;
+use Faker\Core\Uuid;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder {
   /**
@@ -59,61 +61,6 @@ class DatabaseSeeder extends Seeder {
 
     WorkUnit::create([
       'name' => 'Teknik Komputer Jaringan'
-    ]);
-
-    Item::create([
-      'name' => 'Projector',
-      'is_disposable' => 0,
-      'stock' => 0,
-      'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, cupiditate doloremque. Dolore consequatur rem modi deserunt sint quas eos consectetur.',
-      'condition' => 'Layak Pakai',
-      'usage_permission' => 'Siswa',
-      'category_id' => 1,
-      'work_unit_id' => 1
-    ]);
-
-    Item::create([
-      'name' => 'Kabel',
-      'is_disposable' => 1,
-      'stock' => 12,
-      'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, cupiditate doloremque. Dolore consequatur rem modi deserunt sint quas eos consectetur.',
-      'condition' => 'Layak Pakai',
-      'usage_permission' => 'Siswa',
-      'category_id' => 1,
-      'work_unit_id' => 1
-    ]);
-
-    Item::create([
-      'name' => 'Laptop',
-      'is_disposable' => 0,
-      'stock' => 1,
-      'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, cupiditate doloremque. Dolore consequatur rem modi deserunt sint quas eos consectetur.',
-      'condition' => 'Layak Pakai',
-      'usage_permission' => 'Guru',
-      'is_active' => 0,
-      'category_id' => 1,
-      'work_unit_id' => 1
-    ]);
-
-    Item::create([
-      'name' => 'Mouse',
-      'is_disposable' => 0,
-      'stock' => 1,
-      'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, cupiditate doloremque. Dolore consequatur rem modi deserunt sint quas eos consectetur.',
-      'condition' => 'Layak Pakai',
-      'usage_permission' => 'Guru & Siswa',
-      'category_id' => 1,
-      'work_unit_id' => 1
-    ]);
-
-    Transaction::create([
-      'recipient_name' => 'Maman Sutisna',
-      'quantity' => 1,
-      'date' => Carbon::now(),
-      'placement_location' => 'Kelas 12-A',
-      'status' => 'Pending',
-      'user_id' => 1,
-      'item_id' => 1
     ]);
   }
 }
