@@ -12,7 +12,7 @@ class Transaction extends Model {
 
   protected $guarded = ['id'];
 
-  protected $with = ['user', 'item', 'room'];
+  protected $with = ['user', 'item'];
 
   public function user() {
     return $this->belongsTo(User::class);
@@ -20,9 +20,5 @@ class Transaction extends Model {
 
   public function item() {
     return $this->belongsTo(Item::class);
-  }
-
-  public function room() {
-    return $this->belongsTo(Room::class);
   }
 }

@@ -28,6 +28,15 @@ class DatabaseSeeder extends Seeder {
     // ]);
 
     User::create([
+      'name' => 'Super Admin',
+      'phone' => '081234567891',
+      'email' => 'superadmin@gmail.com',
+      'password' => bcrypt('123'),
+      'is_admin' => true,
+      'is_active' => true
+    ]);
+
+    User::create([
       'name' => 'Admin',
       'phone' => '081234567891',
       'email' => 'admin@gmail.com',
@@ -37,33 +46,28 @@ class DatabaseSeeder extends Seeder {
     ]);
 
     Category::create([
-      'name' => 'Elektronik',
-      'is_active' => 1
+      'name' => 'Elektronik'
     ]);
 
     Category::create([
-      'name' => 'Alat Tulis Kantor',
-      'is_active' => 1
+      'name' => 'Alat Tulis Kantor'
     ]);
 
     WorkUnit::create([
-      'name' => 'Rekayasa Perangkat Lunak',
-      'is_active' => 1
+      'name' => 'Rekayasa Perangkat Lunak'
     ]);
 
     WorkUnit::create([
-      'name' => 'Teknik Komputer Jaringan',
-      'is_active' => 1
+      'name' => 'Teknik Komputer Jaringan'
     ]);
 
     Item::create([
       'name' => 'Projector',
       'is_disposable' => 0,
-      'stock' => 1,
+      'stock' => 0,
       'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, cupiditate doloremque. Dolore consequatur rem modi deserunt sint quas eos consectetur.',
       'condition' => 'Layak Pakai',
       'usage_permission' => 'Siswa',
-      'is_active' => 1,
       'category_id' => 1,
       'work_unit_id' => 1
     ]);
@@ -75,7 +79,6 @@ class DatabaseSeeder extends Seeder {
       'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, cupiditate doloremque. Dolore consequatur rem modi deserunt sint quas eos consectetur.',
       'condition' => 'Layak Pakai',
       'usage_permission' => 'Siswa',
-      'is_active' => 1,
       'category_id' => 1,
       'work_unit_id' => 1
     ]);
@@ -99,29 +102,18 @@ class DatabaseSeeder extends Seeder {
       'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, cupiditate doloremque. Dolore consequatur rem modi deserunt sint quas eos consectetur.',
       'condition' => 'Layak Pakai',
       'usage_permission' => 'Guru & Siswa',
-      'is_active' => 1,
       'category_id' => 1,
       'work_unit_id' => 1
     ]);
 
-    Room::create([
-      'name' => '12-A',
-      'is_active' => 1
-    ]);
-
-    Room::create([
-      'name' => '11-B',
-      'is_active' => 1
-    ]);
-
     Transaction::create([
       'recipient_name' => 'Maman Sutisna',
-      'quantity' => 2,
+      'quantity' => 1,
       'date' => Carbon::now(),
+      'placement_location' => 'Kelas 12-A',
       'status' => 'Pending',
       'user_id' => 1,
-      'item_id' => 1,
-      'room_id' => 1
+      'item_id' => 1
     ]);
   }
 }

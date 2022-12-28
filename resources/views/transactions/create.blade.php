@@ -20,7 +20,7 @@
                 Nama Penerima
               </label>
               <input type="text" name="recipient_name" id="recipient-name"
-                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                class="w-96 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
             </div>
 
             <div class="mb-3">
@@ -28,7 +28,7 @@
                 Nama Aset
               </label>
               <input type="text" name="name" id="name" readonly
-                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                class="w-96 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                 value="{{ $item->name }}">
             </div>
 
@@ -38,19 +38,15 @@
               </label>
               <input type="number" name="quantity" id="quantity" value="{{ !$item->is_disposable ? '1' : '' }}"
                 {{ !$item->is_disposable ? 'readonly' : '' }}
-                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                class="w-96 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
             </div>
 
             <div class="mb-5">
-              <label for="room-id" class="block font-medium text-sm text-gray-700">
+              <label for="placement-location" class="block font-medium text-sm text-gray-700">
                 Ruangan
               </label>
-              <select name="room_id" id="room-id"
-                class="block w-48 p-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                @foreach ($rooms as $room)
-                  <option value="{{ $room->id }}">{{ $room->name }}</option>
-                @endforeach
-              </select>
+              <input type="text" name="placement_location" id="placement-location"
+                class="w-96 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
             </div>
 
             <button type="submit"

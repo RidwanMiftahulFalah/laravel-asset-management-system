@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
 use App\Models\Item;
-use App\Models\Room;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -38,8 +37,8 @@ class TransactionController extends Controller {
    */
   public function create(Request $request) {
     $item = Item::find($request->id);
-    $rooms = Room::all();
-    return view('transactions.create', compact(['item', 'rooms']));
+
+    return view('transactions.create', compact(['item']));
   }
 
   /**
@@ -53,7 +52,7 @@ class TransactionController extends Controller {
       'recipient_name' => 'required',
       'quantity' => 'required',
       'item_id' => 'required',
-      'room_id' => 'required'
+      'placement_location' => 'required'
     ]);
 
     $isDisposable = Item::where('id', '=', $request->item_id)->value('is_disposable');
@@ -62,10 +61,10 @@ class TransactionController extends Controller {
       'recipient_name' => $request->recipient_name,
       'quantity' => $request->quantity,
       'date' => Carbon::now(),
+      'placement_location' => $request->placement_location,
       'status' => $isDisposable ? 'Selesai' : 'Pending',
       'user_id' => Auth::id(),
-      'item_id' => $request->item_id,
-      'room_id' => $request->room_id
+      'item_id' => $request->item_id
     ]);
 
     $currentStock = Item::where('id', '=', $request->item_id)->value('stock');

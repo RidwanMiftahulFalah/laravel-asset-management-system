@@ -19,9 +19,9 @@ return new class extends Migration {
       $table->text('description')->nullable();
       $table->string('condition');
       $table->string('usage_permission');
-      $table->string('work_unit');
       $table->boolean('is_active')->default(true);
       $table->foreignId('category_id')->constrained('categories', 'id');
+      $table->foreignId('work_unit_id')->constrained('work_units', 'id');
       $table->timestamps();
     });
   }

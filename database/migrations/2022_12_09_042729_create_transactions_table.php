@@ -15,11 +15,11 @@ return new class extends Migration {
       $table->id();
       $table->string('recipient_name', '75');
       $table->integer('quantity', false);
+      $table->string('placement_location');
       $table->date('date');
       $table->string('status', 15);
       $table->foreignId('user_id')->constrained('users', 'id');
       $table->foreignId('item_id')->constrained('items', 'id');
-      $table->foreignId('room_id')->constrained('rooms', 'id');
     });
   }
 
