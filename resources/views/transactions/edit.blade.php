@@ -33,10 +33,10 @@
             </div>
 
             <div class="mb-3">
-              <label for="room-name" class="block font-medium text-sm text-gray-700">
+              <label for="placement-location" class="block font-medium text-sm text-gray-700">
                 Ruang Penempatan Aset
               </label>
-              <input type="text" id="room-name" readonly value="{{ $transaction->room->name }}"
+              <input type="text" id="placement-location" readonly value="{{ $transaction->placement_location }}"
                 class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
             </div>
 

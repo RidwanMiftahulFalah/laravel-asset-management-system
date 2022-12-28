@@ -60,7 +60,7 @@
 
                   <th class="py-2 px-2">Jumlah</th>
 
-                  <th class="py-2 px-2">Ruangan</th>
+                  <th class="py-2 px-2">Lokasi Penempatan</th>
 
                   <th class="py-2 px-2 rounded-tr-lg">Status</th>
                 </tr>
@@ -85,7 +85,7 @@
 
                     <td>{{ $transaction->quantity }}</td>
 
-                    <td>{{ $transaction->room->name }}</td>
+                    <td>{{ $transaction->placement_location }}</td>
 
                     <td
                       class="py-3 px-2 {{ $loop->iteration === $transactions->count() ? 'rounded-br-lg' : '' }} flex justify-center">
