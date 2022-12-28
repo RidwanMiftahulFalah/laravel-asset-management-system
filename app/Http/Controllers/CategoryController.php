@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller {
   /**
@@ -12,11 +13,17 @@ class CategoryController extends Controller {
    *
    * @return \Illuminate\Http\Response
    */
-  public function index() {
+  public function index(Request $request) {
     $this->authorize('is-admin');
 
+    if($request->search) {
+      $categories = Category::where('name', 'like', '%' . $request->search . '%')->paginate(5);
+    } else {
+      $categories = Category::paginate(5);
+    }
+
     return view('categories.index', [
-      'categories' => Category::paginate(5)
+      'categories' => $categories
     ]);
   }
 
