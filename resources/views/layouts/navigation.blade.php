@@ -34,7 +34,7 @@
             </x-nav-link>
 
             <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
-              {{ __('User') }}
+              {{ __('Pengguna') }}
             </x-nav-link>
           @endcan
         </div>

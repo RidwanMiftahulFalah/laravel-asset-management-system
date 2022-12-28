@@ -74,8 +74,11 @@
               <tbody class="text-center bg-slate-200">
                 @if ($items->count())
                   @foreach ($items as $item)
-                    <tr class="border-b border-sky-800">
-                      <td class="box-border border-x border-r-sky-800">{{ $loop->iteration }}</td>
+                    <tr class="{{ !$loop->iteration === $items->count() ? 'border-b border-sky-800' : '' }}">
+                      <td
+                        class="border-r border-r-sky-800 {{ $loop->iteration === $items->count() ? 'rounded-bl-lg' : '' }}">
+                        {{ $loop->iteration }}
+                      </td>
 
                       <td>{{ $item->name }}</td>
 
@@ -98,7 +101,8 @@
                         </span>
                       </td>
 
-                      <td class="py-2 px-3 border-l border-l-sky-800">
+                      <td
+                        class="py-2 px-3 border-l border-l-sky-800 {{ $loop->iteration === $items->count() ? 'rounded-br-lg' : '' }}">
                         <ul>
                           <li>
                             <a href="{{ route('items.show', $item->id) }}"
