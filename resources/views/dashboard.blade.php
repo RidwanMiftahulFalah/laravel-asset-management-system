@@ -10,19 +10,39 @@
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900">
 
-          <div class="h-40 max-w-screen mb-5 flex flex-wrap justify-between">
-            <div class="bg-blue-300 rounded-2xl w-96 h-40">
-              {{ $totalTransactions }}
+          <div class="h-48 max-w-screen mb-8 flex flex-wrap justify-between">
+            <div class="bg-gradient-to-br from-blue-400 to-emerald-500 rounded-2xl w-96 h-full text-white">
+              <div class="h-4/6 flex items-center justify-center px-5 text-6xl font-bold">
+                {{ $totalTransactions }}
+              </div>
+              <div class="h-2/6 flex items-center justify-end px-5 font-semibold text-lg">
+                Jumlah Transaksi
+              </div>
             </div>
 
-            <div class="bg-blue-300 rounded-2xl w-96 h-40">
-              {{ $totalItems }}
+            <div class="bg-gradient-to-br from-red-400 to-blue-700 rounded-2xl w-96 h-full text-white">
+              <div class="h-4/6 flex items-center justify-center px-5 text-6xl font-bold">
+                {{ $totalItems }}
+              </div>
+              <div class="h-2/6 flex items-center justify-end px-5 font-semibold text-lg">
+                Jumlah Aset
+              </div>
             </div>
 
-            <div class="bg-blue-300 rounded-2xl w-96 h-40">
-              {{ $totalUsers }}
+
+            <div class="bg-gradient-to-br from-amber-400 to-rose-600 rounded-2xl w-96 h-full text-white">
+              <div class="h-4/6 flex items-center justify-center px-5 text-6xl font-bold">
+                {{ $totalUsers }}
+              </div>
+              <div class="h-2/6 flex items-center justify-end px-5 font-semibold text-lg">
+                Jumlah Pengguna
+              </div>
             </div>
           </div>
+
+          <h1 class="text-xl font-bold text-gray-900 mb-3">
+            Semua Riwayat Transaksi
+          </h1>
 
           <div class="max-w-screen overflow-x-auto">
             <table class="w-full table-auto">
