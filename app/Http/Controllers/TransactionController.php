@@ -36,9 +36,9 @@ class TransactionController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function create(Request $request) {
-    $item = Item::find($request->item_id);
+    $item = Item::find($request->id);
 
-    if ($item->stock < 1) {
+    if ($item->stock == 0) {
       return redirect()->route('transactions.index')->with('error', 'Stok Aset kosong.');
     }
 
