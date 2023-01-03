@@ -128,10 +128,6 @@
     const showScannerBtn = document.getElementById('show-qr-scanner');
     const scanner = document.getElementById('reader');
 
-    showScannerBtn.addEventListener('click', function() {
-      scanner.style.display === 'none' ? scanner.style.display = 'block' : scanner.style.display = 'none';
-    });
-
     let html5QrcodeScanner = new Html5QrcodeScanner(
       "reader", {
         fps: 60,
@@ -144,19 +140,21 @@
       /* verbose= */
       false);
 
-    function onScanSuccess(decodedText, decodedResult) {
-      // handle the scanned code
-      let url = `{{ route('transactions.create', ['id' => 'scan_result']) }}`;
-      window.location.href = url.replace('scan_result', decodedText);
-      html5QrcodeScanner.clear();
-    }
+    showScannerBtn.addEventListener('click', function() {
+      scanner.style.display === 'none' ? scanner.style.display = 'block' : scanner.style.display = 'none';
 
-    function onScanFailure(error) {
-      // handle scan failure, usually better to ignore and keep scanning.
-    }
+      function onScanSuccess(decodedText, decodedResult) {
+        // handle the scanned code
+        let url = `{{ route('transactions.create', ['id' => 'scan_result']) }}`;
+        window.location.href = url.replace('scan_result', decodedText);
+        html5QrcodeScanner.clear();
+      }
 
+      function onScanFailure(error) {
+        // handle scan failure, usually better to ignore and keep scanning.
+      }
 
-
-    html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+      html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    });
   </script>
 </x-app-layout>

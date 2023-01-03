@@ -38,6 +38,10 @@ class TransactionController extends Controller {
   public function create(Request $request) {
     $item = Item::find($request->id);
 
+    if (!$item) {
+      return redirect()->route('transactions.index')->with('error', 'QR Code tidak valid. Aset tidak ditemukan.');
+    }
+
     if ($item->stock == 0) {
       return redirect()->route('transactions.index')->with('error', 'Stok Aset kosong.');
     }
