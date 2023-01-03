@@ -38,15 +38,6 @@ class DatabaseSeeder extends Seeder {
       'is_active' => true
     ]);
 
-    User::create([
-      'name' => 'Admin',
-      'phone' => '081234567891',
-      'email' => 'admin@gmail.com',
-      'password' => bcrypt('123'),
-      'is_admin' => true,
-      'is_active' => true
-    ]);
-
     Category::create([
       'name' => 'Elektronik'
     ]);
