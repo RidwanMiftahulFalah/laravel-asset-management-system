@@ -134,10 +134,11 @@
 
     let html5QrcodeScanner = new Html5QrcodeScanner(
       "reader", {
-        fps: 10,
+        fps: 60,
         qrbox: {
           width: 250,
-          height: 250
+          height: 250,
+          rememberLastUsedCamera: true,
         }
       },
       /* verbose= */
@@ -145,8 +146,9 @@
 
     function onScanSuccess(decodedText, decodedResult) {
       // handle the scanned code
-      let url = `{{ route('transactions.create', ['item_id' => 'scan_result']) }}`;
+      let url = `{{ route('transactions.create', ['id' => 'scan_result']) }}`;
       window.location.href = url.replace('scan_result', decodedText);
+      html5QrcodeScanner.clear();
     }
 
     function onScanFailure(error) {
