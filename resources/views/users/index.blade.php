@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Daftar User') }}
+      {{ __('Daftar Pengguna') }}
     </h2>
   </x-slot>
 
@@ -86,13 +86,23 @@
 
                       <td
                         class="py-5 border-l border-l-sky-800 {{ $loop->iteration === $users->count() ? 'rounded-br-lg' : '' }}">
-                        <form action="{{ route('users.update', $user->id) }}" method="post">
-                          @csrf
-                          @method('PUT')
+                        @if (!$user->is_admin)
+                          <form action="{{ route('users.update', $user->id) }}" method="post">
+                            @csrf
+                            @method('PUT')
 
-                          <button type="submit"
-                            class="inline-flex items-center justify-center w-32 py-1.5 {{ $user->is_active ? 'bg-red-600' : 'bg-emerald-600' }} border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:{{ $user->is_active ? 'bg-red-500' : 'bg-emerald-500' }} focus:{{ $user->is_active ? 'bg-red-500' : 'bg-emerald-500' }} active:{{ $user->is_active ? 'bg-red-700' : 'bg-emerald-700' }} focus:outline-none focus:ring-2 focus:{{ $user->is_active ? 'ring-red-500' : 'ring-emerald-500' }} focus:ring-offset-2 transition ease-in-out duration-150"">{{ $user->is_active ? 'Nonaktifkan' : 'Aktifkan' }}</button>
-                        </form>
+                            <button type="submit"
+                              class="inline-flex items-center justify-center w-32 py-1.5 {{ $user->is_active ? 'bg-red-600' : 'bg-emerald-600' }} border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:{{ $user->is_active ? 'bg-red-500' : 'bg-emerald-500' }} focus:{{ $user->is_active ? 'bg-red-500' : 'bg-emerald-500' }} active:{{ $user->is_active ? 'bg-red-700' : 'bg-emerald-700' }} focus:outline-none focus:ring-2 focus:{{ $user->is_active ? 'ring-red-500' : 'ring-emerald-500' }} focus:ring-offset-2 transition ease-in-out duration-150">
+                              {{ $user->is_active ? 'Nonaktifkan' : 'Aktifkan' }}
+                            </button>
+                          </form>
+                        @else
+                          <div
+                            class="inline-flex items-center justify-center w-32 py-1.5 bg-red-300 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest">
+                            Nonaktifkan
+                          </div>
+                        @endif
+
                       </td>
                     </tr>
                   @endforeach

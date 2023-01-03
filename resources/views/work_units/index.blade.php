@@ -45,7 +45,7 @@
           </div>
 
           <div class="max-w-screen">
-            <table class="w-2/4 rounded-lg table-auto">
+            <table class="w-full rounded-lg table-auto">
               <thead class="bg-sky-800 text-white">
                 <tr>
                   <th class="py-2 px-2 rounded-tl-lg">#</th>
@@ -77,7 +77,7 @@
                       </td>
 
                       <td
-                        class="py-2 border-l border-l-sky-800 {{ $loop->iteration === $workUnits->count() ? 'rounded-br-lg' : '' }}">
+                        class="w-1/5 py-2 border-l border-l-sky-800 {{ $loop->iteration === $workUnits->count() ? 'rounded-br-lg' : '' }}">
                         <ul>
                           <li>
                             <a href="{{ route('work_units.edit', $workUnit->id) }}"
