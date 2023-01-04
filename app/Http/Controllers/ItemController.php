@@ -108,16 +108,6 @@ class ItemController extends Controller {
       'work_unit_id' => 'required'
     ]);
 
-    $request->validate([
-      'name' => 'required',
-      'is_disposable' => 'required',
-      'stock' => 'required',
-      'condition' => 'required',
-      'usage_permission' => 'required',
-      'category_id' => 'required',
-      'work_unit_id' => 'required'
-    ]);
-
     $item->update($request->all());
 
     return redirect()->route('items.index')->with('message', 'Data Aset yang dipilih berhasil diubah.');
