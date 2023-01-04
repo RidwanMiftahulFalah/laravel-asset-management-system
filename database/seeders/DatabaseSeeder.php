@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder {
       'name' => 'Super Admin',
       'phone' => '081234567891',
       'email' => 'superadmin@gmail.com',
-      'password' => bcrypt('123'),
+      'password' => bcrypt('12345678'),
       'is_admin' => true,
       'is_active' => true
     ]);
