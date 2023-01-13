@@ -10,13 +10,25 @@
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900">
 
+          @if ($errors->any())
+
+            <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-gray-800 dark:text-red-400"
+              role="alert">
+              <ul>
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+
           <form action="{{ route('categories.store') }}" method="POST">
             @csrf
 
             <div class="mb-3">
               <label for="name" class="block font-medium text-sm text-gray-700">Nama Kategori</label>
               <input type="text" name="name" id="name"
-                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
             </div>
 
             <button type="submit"
