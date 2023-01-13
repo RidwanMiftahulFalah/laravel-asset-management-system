@@ -11,6 +11,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller {
+  private $niceNames = [
+    'recipient_name' => 'Nama Penerima',
+    'quantity' => 'Jumlah aset yang akan diajukan',
+    'placement_location' => 'Lokasi penempatan aset',
+    'condition' => 'Kondisi aset'
+  ];
+
   /**
    * Display a listing of the resource.
    *
@@ -39,7 +46,7 @@ class TransactionController extends Controller {
     $item = Item::find($request->id);
 
     if (!$item) {
-      return redirect()->route('transactions.index')->with('error', 'QR Code tidak valid. Aset tidak ditemukan.');
+      return redirect()->route('transactions.index')->with('error', 'Aset tidak ditemukan.');
     }
 
     if ($item->stock == 0) {
@@ -64,11 +71,13 @@ class TransactionController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(StoreTransactionRequest $request) {
+    $item = Item::find($request->item_id);
+
     $request->validate([
-      'recipient_name' => 'required',
-      'quantity' => 'required',
-      'placement_location' => 'required'
-    ]);
+      'recipient_name' => ['required', 'min:2', 'max:150'],
+      'quantity' => ['required', "lte:$item->stock"],
+      'placement_location' => ['required', 'min:2', 'max:75']
+    ], [], $this->niceNames);
 
     $isDisposable = Item::where('id', '=', $request->item_id)->value('is_disposable');
 
@@ -88,7 +97,7 @@ class TransactionController extends Controller {
       'stock' => $currentStock - $request->quantity
     ]);
 
-    return redirect()->route('transactions.index')->with('message', 'Transaksi berhasil.');
+    return redirect()->route('transactions.history')->with('message', 'Transaksi berhasil.');
   }
 
   /**
@@ -121,7 +130,7 @@ class TransactionController extends Controller {
   public function update(UpdateTransactionRequest $request, Transaction $transaction) {
     $request->validate([
       'condition' => 'required'
-    ]);
+    ], [], $this->niceNames);
 
     // Update transaction status from 'Pending' to 'Selesai'
     $transaction->update([

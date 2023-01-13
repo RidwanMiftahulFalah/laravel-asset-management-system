@@ -33,14 +33,6 @@
             </div>
 
             <div class="mb-3">
-              <label for="placement-location" class="block font-medium text-sm text-gray-700">
-                Ruang Penempatan Aset
-              </label>
-              <input type="text" id="placement-location" readonly value="{{ $transaction->placement_location }}"
-                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
-            </div>
-
-            <div class="mb-3">
               <label for="item-name" class="block font-medium text-sm text-gray-700">
                 Nama Aset
               </label>
@@ -56,6 +48,14 @@
                 class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
             </div>
 
+            <div class="mb-3">
+              <label for="placement-location" class="block font-medium text-sm text-gray-700">
+                Lokasi Penempatan
+              </label>
+              <input type="text" id="placement-location" readonly value="{{ $transaction->placement_location }}"
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+            </div>
+            
             <div class="mb-5">
               <label class="block font-medium text-sm text-gray-700">
                 Kondisi Aset

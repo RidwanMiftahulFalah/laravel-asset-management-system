@@ -10,6 +10,17 @@
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900">
 
+          @if ($errors->any())
+            <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-gray-800 dark:text-red-400"
+              role="alert">
+              <ul class="mx-4 list-disc list-outside">
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+
           <form action="{{ route('transactions.store') }}" method="post">
             @csrf
 
@@ -20,7 +31,7 @@
                 Nama Penerima
               </label>
               <input type="text" name="recipient_name" id="recipient-name"
-                class="w-96 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                class="w-96 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" value="{{ old('recipient_name') }}">
             </div>
 
             <div class="mb-3">
@@ -36,17 +47,16 @@
               <label for="quantity" class="block font-medium text-sm text-gray-700">
                 Jumlah
               </label>
-              <input type="number" name="quantity" id="quantity" value="{{ !$item->is_disposable ? '1' : '' }}"
-                {{ !$item->is_disposable ? 'readonly' : '' }}
-                class="w-96 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+              <input type="number" name="quantity" id="quantity"
+                class="w-96 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" value="{{ old('quantity') }}">
             </div>
 
             <div class="mb-5">
               <label for="placement-location" class="block font-medium text-sm text-gray-700">
-                Ruangan
+                Lokasi Penempatan
               </label>
               <input type="text" name="placement_location" id="placement-location"
-                class="w-96 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                class="w-96 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" value="{{ old('placement_location') }}">
             </div>
 
             <button type="submit"

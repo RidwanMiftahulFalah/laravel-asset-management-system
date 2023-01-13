@@ -81,7 +81,9 @@ return [
   'lte' => [
     'array' => 'The :attribute must not have more than :value items.',
     'file' => 'The :attribute must be less than or equal to :value kilobytes.',
-    'numeric' => 'The :attribute must be less than or equal to :value.',
+    // 'numeric' => 'The :attribute must be less than or equal to :value.',
+    'numeric' => ':attribute tidak boleh melebihi stok yang tersedia (Stok saat ini : :value).',
+    'string' => 'The :attribute must be less than or equal to :value characters.',
     'string' => 'The :attribute must be less than or equal to :value characters.',
   ],
   'mac_address' => 'The :attribute must be a valid MAC address.',
