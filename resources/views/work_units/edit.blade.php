@@ -10,6 +10,17 @@
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900">
 
+          @if ($errors->any())
+            <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-gray-800 dark:text-red-400"
+              role="alert">
+              <ul class="mx-4 list-disc list-outside">
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+
           <form action="{{ route('work_units.update', $workUnit->id) }}" method="post">
             @csrf
             @method('PUT')
@@ -19,7 +30,7 @@
                 Nama Unit Kerja
               </label>
               <input type="text" name="name" id="name" value="{{ $workUnit->name }}"
-                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
             </div>
 
             <button type="submit"
