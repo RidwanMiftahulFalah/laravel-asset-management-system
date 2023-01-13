@@ -48,7 +48,7 @@ class CategoryController extends Controller {
     $this->authorize('is-admin');
 
     $messages = [
-      'required' => 'Nama Kategori wajib diisi',
+      'required' => 'Nama Kategori wajib diisi.',
       'min' => 'Nama Kategori minimal mengandung 2 karakter.',
       'max' => 'Nama Kategori maksimal mengandung 100 karakter.'
     ];
@@ -94,7 +94,7 @@ class CategoryController extends Controller {
     $this->authorize('is-admin');
 
     $messages = [
-      'required' => 'Nama Kategori wajib diisi',
+      'required' => 'Nama Kategori wajib diisi.',
       'min' => 'Nama Kategori minimal mengandung 2 karakter.',
       'max' => 'Nama Kategori maksimal mengandung 100 karakter.'
     ];
