@@ -29,7 +29,7 @@
                 Nama Unit Kerja
               </label>
               <input type="text" name="name" id="name"
-                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" value="{{ old('name') }}" required>
             </div>
 
             <button type="submit"
