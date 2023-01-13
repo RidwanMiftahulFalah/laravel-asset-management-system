@@ -47,15 +47,13 @@ class CategoryController extends Controller {
   public function store(StoreCategoryRequest $request) {
     $this->authorize('is-admin');
 
-    $messages = [
-      'required' => 'Nama Kategori wajib diisi.',
-      'min' => 'Nama Kategori minimal mengandung 2 karakter.',
-      'max' => 'Nama Kategori maksimal mengandung 100 karakter.'
+    $niceNames = [
+      'name' => 'Nama Kategori'
     ];
 
     $request->validate([
       'name' => ['required', 'min:2', 'max:100']
-    ], $messages);
+    ], [], $niceNames);
 
     Category::create($request->all());
     return redirect()->route('categories.index')->with('message', 'Data Kategori baru berhasil ditambahkan.');
@@ -93,15 +91,13 @@ class CategoryController extends Controller {
   public function update(UpdateCategoryRequest $request, Category $category) {
     $this->authorize('is-admin');
 
-    $messages = [
-      'required' => 'Nama Kategori wajib diisi.',
-      'min' => 'Nama Kategori minimal mengandung 2 karakter.',
-      'max' => 'Nama Kategori maksimal mengandung 100 karakter.'
+    $niceNames = [
+      'name' => 'Nama Kategori'
     ];
 
     $request->validate([
       'name' => ['required', 'min:2', 'max:100']
-    ], $messages);
+    ], [], $niceNames);
 
     $category->update($request->all());
     return redirect()->route('categories.index')->with('message', 'Data Kategori yang dipilih berhasil diubah.');

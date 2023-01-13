@@ -10,6 +10,16 @@ use App\Models\WorkUnit;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller {
+  private $niceNames = [
+    'name' => 'Nama Aset',
+    'is_disposable' => 'Habis Pakai',
+    'stock' => 'Stok',
+    'usage_permission' => 'Hak Pakai',
+    'condition' => 'Kondisi',
+    'category_id' => 'Kategori',
+    'work_unit_id' => 'Unit Kerja'
+  ];
+
   /**
    * Display a listing of the resource.
    *
@@ -49,14 +59,14 @@ class ItemController extends Controller {
     $this->authorize('is-admin');
 
     $request->validate([
-      'name' => 'required',
+      'name' => ['required', 'min:2', 'max:100'],
       'is_disposable' => 'required',
       'stock' => 'required',
-      'condition' => 'required',
       'usage_permission' => 'required',
+      'condition' => 'required',
       'category_id' => 'required',
       'work_unit_id' => 'required'
-    ]);
+    ], [], $this->niceNames);
 
     Item::create($request->all());
     return redirect()->route('items.index')->with('message', 'Data Aset baru berhasil ditambahkan.');
@@ -98,15 +108,16 @@ class ItemController extends Controller {
    */
   public function update(UpdateItemRequest $request, Item $item) {
     $this->authorize('is-admin');
+
     $request->validate([
-      'name' => 'required',
+      'name' => ['required', 'min:2', 'max:100'],
       'is_disposable' => 'required',
       'stock' => 'required',
-      'condition' => 'required',
       'usage_permission' => 'required',
+      'condition' => 'required',
       'category_id' => 'required',
       'work_unit_id' => 'required'
-    ]);
+    ], [], $this->niceNames);
 
     $item->update($request->all());
 

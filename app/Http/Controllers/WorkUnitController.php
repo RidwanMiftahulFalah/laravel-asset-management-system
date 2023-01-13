@@ -8,6 +8,10 @@ use App\Models\WorkUnit;
 use Illuminate\Http\Request;
 
 class WorkUnitController extends Controller {
+  private $niceNames = [
+    'name' => 'Nama Unit Kerja'
+  ];
+
   /**
    * Display a listing of the resource.
    *
@@ -45,15 +49,9 @@ class WorkUnitController extends Controller {
   public function store(StoreWorkUnitRequest $request) {
     $this->authorize('is-admin');
 
-    $messages = [
-      'required' => 'Nama Unit Kerja wajib diisi.',
-      'min' => 'Nama Unit Kerja minimal mengandung 2 karakter.',
-      'max' => 'Nama Unit Kerja maksimal mengandung 100 karakter.'
-    ];
-
     $request->validate([
       'name' => ['required', 'min:2', 'max:100']
-    ], $messages);
+    ], [], $this->niceNames);
 
     WorkUnit::create($request->all());
     return redirect()->route('work_units.index')->with('message', 'Data Unit Kerja baru berhasil ditambahkan.');
@@ -91,15 +89,9 @@ class WorkUnitController extends Controller {
   public function update(UpdateWorkUnitRequest $request, WorkUnit $workUnit) {
     $this->authorize('is-admin');
 
-    $messages = [
-      'required' => 'Nama Unit Kerja wajib diisi.',
-      'min' => 'Nama Unit Kerja minimal mengandung 2 karakter.',
-      'max' => 'Nama Unit Kerja maksimal mengandung 100 karakter.'
-    ];
-
     $request->validate([
       'name' => ['required', 'min:2', 'max:100']
-    ], $messages);
+    ], [], $this->niceNames);
 
     $workUnit->update($request->all());
     return redirect()->route('work_units.index')->with('message', 'Data Unit Kerja yang dipilih berhasil diubah.');

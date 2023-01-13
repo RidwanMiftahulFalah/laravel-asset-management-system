@@ -10,6 +10,17 @@
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900">
 
+          @if ($errors->any())
+            <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-gray-800 dark:text-red-400"
+              role="alert">
+              <ul class="mx-4 list-disc list-outside">
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+
           <form action="{{ route('items.store') }}" method="post">
             @csrf
 
@@ -18,7 +29,7 @@
                 Nama Aset
               </label>
               <input type="text" name="name" id="name"
-                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" value="{{ old('name') }}">
             </div>
 
             <div class="mb-3">
@@ -100,7 +111,7 @@
 
               <div class="flex">
                 <div class="flex items-center mr-4">
-                  <input id="layak-pakai" type="radio" value="Layak Pakai" name="condition" checked
+                  <input id="layak-pakai" type="radio" value="Layak Pakai" name="condition"
                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
                   <label for="layak-pakai" class="ml-2 text-md font-medium text-gray-900">
                     Layak Pakai
