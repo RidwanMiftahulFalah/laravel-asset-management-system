@@ -36,6 +36,10 @@
             <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
               {{ __('Pengguna') }}
             </x-nav-link>
+
+            <x-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.*')">
+              {{ __('Laporan') }}
+            </x-nav-link>
           @endcan
         </div>
       </div>
@@ -117,7 +121,11 @@
         </x-responsive-nav-link>
 
         <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
-          {{ __('User') }}
+          {{ __('Pengguna') }}
+        </x-responsive-nav-link>
+
+        <x-responsive-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.*')">
+          {{ __('Laporan') }}
         </x-responsive-nav-link>
       </div>
     @endcan

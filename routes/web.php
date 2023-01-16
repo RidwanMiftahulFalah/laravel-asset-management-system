@@ -7,6 +7,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\WorkUnitController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +51,9 @@ Route::middleware('auth')->group(function () {
 
   Route::get('/transactions/history', [TransactionController::class, 'history'])->name('transactions.history');
   Route::resource('transactions', TransactionController::class)->except(['show', 'destroy']);
+
+  Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+  Route::get('/reports/transactions', [ReportController::class, 'createTransactionsPDF'])->name('reports.transactionsPDF');
 });
 
 require __DIR__ . '/auth.php';
