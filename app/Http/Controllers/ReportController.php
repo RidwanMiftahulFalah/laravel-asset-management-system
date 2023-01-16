@@ -13,30 +13,37 @@ class ReportController extends Controller {
 
   public function createTransactionsPDF(Request $request) {
     $requestAllData = false;
+    $startDate = $request->start_date;
+    $endDate = $request->end_date;
 
-    if (!$request->start_date && !$request->end_date) {
+    if (!$startDate && !$endDate) {
       $requestAllData = true;
       $transactions = Transaction::all();
-    } else if ($request->start_date && !$request->end_date) {
-      $transactions = Transaction::where('date', '>=', $request->start_date)->get();
-    } else if (!$request->start_date && $request->end_date) {
-      $transactions = Transaction::where('date', '<=', $request->end_date)->get();
+    } else if ($startDate && !$endDate) {
+      $transactions = Transaction::where('date', '>=', $startDate)->get();
+    } else if (!$startDate && $endDate) {
+      $transactions = Transaction::where('date', '<=', $endDate)->get();
     } else {
-      if ($request->start_date > $request->end_date) {
+      if ($startDate > $endDate) {
         return redirect()->route('reports.index')->with('message', 'Tanggal Awal tidak boleh lebih besar dari Tanggal Akhir');
       }
 
-      $transactions = Transaction::where('date', '>=', $request->start_date)->where('date', '<=', $request->end_date)->get();
+      $transactions = Transaction::where('date', '>=', $startDate)->where('date', '<=', $endDate)->get();
     }
 
     if (!$transactions->count()) {
       return redirect()->route('reports.index')->with('message', 'Data tidak ditemukan.');
     }
 
+    if($requestAllData) {
+      $startDate = $transactions->first()->date;
+      $endDate = $transactions->last()->date;
+    }
+
     $pdf = Pdf::loadView('reports.transactions', [
       'transactions' => $transactions,
-      'startDate' => $request->start_date,
-      'endDate' => $request->end_date,
+      'startDate' => $startDate,
+      'endDate' => $endDate,
       'requestAllData' => $requestAllData,
     ]);
     return $pdf->download('Laporan Transaksi.pdf');

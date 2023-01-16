@@ -44,10 +44,8 @@
 <body>
   <h1>Laporan Transaksi</h1>
 
-  @if (!$requestAllData)
-    <p>Tanggal Awal : {{ $startDate ? $startDate : '-' }}</p>
-    <p>Tanggal Akhir : {{ $endDate ? $endDate : '-' }}</p>
-  @endif
+  <p>Tanggal Awal : {{ $startDate ? $startDate : '-' }}</p>
+  <p>Tanggal Akhir : {{ $endDate ? $endDate : '-' }}</p>
 
   <table class="w-full table-auto">
     <thead class="bg-sky-800 text-white">
