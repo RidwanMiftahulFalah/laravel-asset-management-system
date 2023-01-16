@@ -16,7 +16,7 @@ class DashboardController extends Controller {
   public function index() {
     $transactions = Transaction::orderBy('id', 'desc')->paginate(10);
 
-    $totalTransactions = $transactions->count();
+    $totalTransactions = Transaction::count();
     $totalItems = Item::count();
     $totalUsers = User::count();
 
