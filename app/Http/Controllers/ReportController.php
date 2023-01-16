@@ -8,10 +8,14 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReportController extends Controller {
   public function index() {
+    $this->authorize('is-admin');
+    
     return view('reports.index');
   }
 
   public function createTransactionsPDF(Request $request) {
+    $this->authorize('is-admin');
+  
     $requestAllData = false;
     $startDate = $request->start_date;
     $endDate = $request->end_date;
