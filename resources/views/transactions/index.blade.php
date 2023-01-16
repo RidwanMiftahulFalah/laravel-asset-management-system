@@ -11,15 +11,13 @@
         <div class="p-6 text-gray-900">
 
           @if (session('message'))
-            <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg"
-              role="alert">
+            <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg" role="alert">
               <span class="font-semibold">{{ session('message') }}</span>
             </div>
           @endif
 
           @if (session('error'))
-            <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg"
-              role="alert">
+            <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
               <span class="font-semibold">{{ session('error') }}</span>
             </div>
           @endif
@@ -29,12 +27,11 @@
               <form action="{{ route('transactions.index') }}" method="get">
                 @csrf
 
-                <label for="default-search"
-                  class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
                 <div class="relative">
                   <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="none"
-                      stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor"
+                      viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
@@ -54,7 +51,9 @@
             </button>
           </div>
 
+          {{-- <div class="w-full flex justify-center"> --}}
           <div id="reader" class="w-96 h-96 mb-3" style="display: none"></div>
+          {{-- </div> --}}
 
           <div class="max-w-screen overflow-auto">
             <table class="w-full table-auto">
@@ -141,7 +140,21 @@
       false);
 
     showScannerBtn.addEventListener('click', function() {
-      scanner.style.display === 'none' ? scanner.style.display = 'block' : scanner.style.display = 'none';
+      // scanner.style.display === 'none' ? scanner.style.display = 'block' : scanner.style.display = 'none';
+
+      if (scanner.style.display === 'none') {
+        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+        scanner.style.display = 'block';
+        showScannerBtn.innerText = 'Stop Scanning';
+        showScannerBtn.className =
+          'inline-flex items-center mb-3 px-4 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150';
+      } else if (scanner.style.display === 'block') {
+        html5QrcodeScanner.clear();
+        scanner.style.display = 'none';
+        showScannerBtn.innerText = 'Scan QR Code';
+        showScannerBtn.className =
+          'inline-flex items-center mb-3 px-4 bg-emerald-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-500 focus:bg-emerald-500 active:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition ease-in-out duration-150';
+      }
 
       function onScanSuccess(decodedText, decodedResult) {
         // handle the scanned code
@@ -154,7 +167,7 @@
         // handle scan failure, usually better to ignore and keep scanning.
       }
 
-      html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+      // html5QrcodeScanner.render(onScanSuccess, onScanFailure);
     });
   </script>
 </x-app-layout>
