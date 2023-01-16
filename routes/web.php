@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
 
   Route::resource('rooms', RoomController::class);
 
+  Route::get('/items/qr_code', [ItemController::class, 'createQRCodePDF'])->name('items.QRCodePDF');
   Route::resource('items', ItemController::class);
 
   Route::resource('dashboard', DashboardController::class)->only(['index']);

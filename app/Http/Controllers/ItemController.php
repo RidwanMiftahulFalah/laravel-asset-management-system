@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Item;
 use App\Models\WorkUnit;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ItemController extends Controller {
   private $niceNames = [
@@ -82,6 +83,14 @@ class ItemController extends Controller {
     $this->authorize('is-admin');
 
     return view('items.show', compact('item'));
+  }
+
+  public function createQRCodePDF(Request $request) {
+    $this->authorize('is-admin');
+
+    $item = Item::find($request->id);
+    $pdf = Pdf::loadView('items.item-qr-code', compact('item'));
+    return $pdf->download($item->name . ' QR-Code.pdf');
   }
 
   /**
