@@ -69,8 +69,24 @@ class ItemController extends Controller {
       'work_unit_id' => 'required'
     ], [], $this->niceNames);
 
-    Item::create($request->all());
-    return redirect()->route('items.index')->with('message', 'Data Aset baru berhasil ditambahkan.');
+    if ($request->is_disposable == 0) {
+      for ($i = 1; $i <= $request->stock; $i++) {
+        Item::create([
+          'name' => $request->name,
+          'is_disposable' => $request->is_disposable,
+          'stock' => 1,
+          'description' => $request->description,
+          'condition' => $request->condition,
+          'usage_permission' => $request->usage_permission,
+          'category_id' => $request->category_id,
+          'work_unit_id' => $request->work_unit_id
+        ]);
+      }
+      return redirect()->route('items.index')->with('message', "$request->stock Data Aset baru berhasil ditambahkan.");
+    } else {
+      Item::create($request->all());
+      return redirect()->route('items.index')->with('message', "Data Aset baru berhasil ditambahkan.");
+    }
   }
 
   /**

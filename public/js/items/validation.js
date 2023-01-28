@@ -14,11 +14,10 @@ for (let i = 0; i < disposable.length; i++) {
   // Add event listener to every element that has "disposable" class
   disposable[i].addEventListener('click', () => {
     if (disposable[i].value == 1) {
-      stock.value = '0';
       stock.readOnly = false;
     } else {
-      stock.value = '1';
       stock.readOnly = true;
     }
   });
 }
+

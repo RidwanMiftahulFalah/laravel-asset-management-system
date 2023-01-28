@@ -172,7 +172,7 @@
             </button>
           </form>
 
-          <script src="{{ asset('js/items/validation.js') }}"></script>
+          {{-- <script src="{{ asset('js/items/validation.js') }}"></script> --}}
 
         </div>
       </div>

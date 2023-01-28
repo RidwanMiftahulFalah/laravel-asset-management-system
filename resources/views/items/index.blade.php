@@ -11,8 +11,7 @@
         <div class="p-6 text-gray-900">
 
           @if (session('message'))
-            <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg"
-              role="alert">
+            <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg" role="alert">
               <span class="font-semibold">{{ session('message') }}</span>
             </div>
           @endif
@@ -26,12 +25,11 @@
             <form action="{{ route('items.index') }}" method="get">
               @csrf
 
-              <label for="default-search"
-                class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+              <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="none"
-                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                   </svg>
@@ -51,9 +49,9 @@
                 <tr>
                   <th class="py-2 px-3 rounded-tl-lg">#</th>
 
-                  <th class="py-2 px-2">Nama Aset</th>
+                  <th class="py-2 px-2 w-60">Nama Aset</th>
 
-                  <th class="py-2 px-2">Sifat Aset</th>
+                  <th class="py-2 px-2 w-32">Sifat Aset</th>
 
                   <th class="py-2 px-2">Stok</th>
 
@@ -61,11 +59,11 @@
 
                   <th class="py-2 px-2">Kategori</th>
 
-                  <th class="py-2 px-2">Unit Kerja</th>
+                  <th class="py-2 px-2 w-32">Unit Kerja</th>
 
                   <th class="py-2 px-2">Hak Pakai</th>
 
-                  <th class="py-2 px-2">Status</th>
+                  <th class="py-2 px-4">Status</th>
 
                   <th class="py-2 px-2 rounded-tr-lg">Opsi</th>
                 </tr>
@@ -80,7 +78,7 @@
                         {{ $loop->iteration }}
                       </td>
 
-                      <td>{{ $item->name }}</td>
+                      <td class="break-all">{{ $item->name }}</td>
 
                       <td>{{ $item->is_disposable ? 'Habis Pakai' : 'Tidak Habis Pakai' }}</td>
 
